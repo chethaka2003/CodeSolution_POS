@@ -1,0 +1,4 @@
+.scroll-pane > .viewport {
+    -fx-background-color:  #292C2D;
+    -fx-background-radius: 12;
+}

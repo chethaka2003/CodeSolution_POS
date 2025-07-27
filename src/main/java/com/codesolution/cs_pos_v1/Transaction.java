@@ -7,18 +7,22 @@ public class Transaction {
      String transaction_date;
      String transaction_time;
      String transaction_type;
-     String transaction_status;
+     boolean transaction_status;
      String transaction_description;
      String transaction_amount;
      ArrayList<Item> items;
 
-    public Transaction(int transaction_id, String transaction_date, String transaction_time, String transaction_type, String transaction_status) {
+    public Transaction(int transaction_id, String transaction_date, String transaction_time, String transaction_type) {
         this.transaction_id = transaction_id;
         this.transaction_date = transaction_date;
         this.transaction_time = transaction_time;
         this.transaction_type = transaction_type;
-        this.transaction_status = transaction_status;
 
+    }
+
+    //Change the transaction status
+    public void changeTransactionStatus(boolean transaction_status) {
+        this.transaction_status = transaction_status;
     }
 
 }
