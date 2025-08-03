@@ -1,4 +1,117 @@
+.root{
+    -bg-color:  #111315;
+    -pink-color:  #FAC1D9;
+    -light-black:  #292C2D;
+    -white-color: #EAEAEA;
+    -true-white: #ffffff;
+    -light-gray: #7A7A7A;
+    -brdr-color: #404040;
+    -light-bg-color: #1C1C1C
+
+}
+
 .scroll-pane > .viewport {
-    -fx-background-color:  #292C2D;
+    -fx-background-color:  -light-black;
     -fx-background-radius: 12;
+}
+
+.itemName{
+    -fx-padding: 10;
+    -fx-text-fill: #EAEAEA;
+    -fx-font-size: 16px;
+}
+
+.inputs{
+    -fx-padding: 10;
+}
+
+.darkInput{
+    -fx-background-color:  -bg-color;
+    -fx-background-radius: 12;
+    -fx-text-fill: -true-white;
+    -fx-prompt-text-fill: -light-gray;
+    -fx-border-color: -brdr-color;
+    -fx-border-radius: 12;
+
+}
+
+.lightInput{
+    -fx-background-color:  -light-bg-color;
+    -fx-background-radius: 12;
+    -fx-text-fill: -true-white;
+    -fx-prompt-text-fill: -light-gray;
+    -fx-border-color: -brdr-color;
+    -fx-border-radius: 12;
+
+}
+
+.pinkBtn{
+    -fx-background-color:  -pink-color;
+    -fx-background-radius: 8;
+    -fx-text-fill: -bg-color;
+
+}
+
+.check-box:selected .mark {
+    -fx-background-color: #-pink-color;   /* Tick color */
+}
+
+.pinkBlackBtn{
+    -fx-background-color:  -light-bg-color;
+    -fx-background-radius: 12;
+    -fx-text-fill: -pink-color;
+    -fx-border-color: -pink-color;
+    -fx-border-radius: 12;
+    -fx-border-width: 2;
+
+}
+
+.checkBox{
+    -fx-text-fill: -pink-color;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+}
+
+.check-box .box {
+    -fx-background-color: -light-black;     /* Inner box color */
+    -fx-border-color: -pink-color;       /* Tick box border */
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+}
+
+.itemBox {
+    -fx-background-color:  -light-black;
+    -fx-background-radius: 12;
+}
+
+.anchorBg{
+    -fx-background-color:  -bg-color;
+}
+
+.anchorPad{
+    -fx-padding: 25;
+}
+
+.title{
+    -fx-font-size: 48px;
+    -fx-text-fill: -white-color;
+    -fx-font-weight: bold;
+}
+.Subtitle{
+    -fx-font-size: 12px;
+    -fx-text-fill: -pink-color;
+    -fx-font-weight: bold;
+}
+
+.loginTitle{
+    -fx-font-size: 32px;
+    -fx-text-fill: -white-color;
+    -fx-font-weight: bold;
+
+}
+.loginSubTitle{
+    -fx-font-size: 14px;
+    -fx-text-fill: -white-color;
+    -fx-font-family: "Calibri";
+
 }

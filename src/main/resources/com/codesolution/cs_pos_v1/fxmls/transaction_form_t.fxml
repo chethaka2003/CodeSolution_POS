@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane style="-fx-background-color: #111315;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TransactionController">
+<AnchorPane prefHeight="649.0" prefWidth="1000.0" style="-fx-background-color: #111315;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TransactionController">
 
-    <VBox spacing="20" style="-fx-padding: 25;" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+    <VBox layoutX="-17.0" prefHeight="649.0" prefWidth="1017.0" spacing="20" style="-fx-padding: 25;" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0.0">
 
         <!-- Header -->
         <HBox alignment="CENTER">
@@ -23,22 +23,22 @@
         <HBox spacing="20" VBox.vgrow="ALWAYS">
 
             <!-- LEFT SIDE: Item Table -->
-            <VBox prefHeight="526.0" prefWidth="628.0" spacing="15" style="-fx-background-color: #111315; -fx-background-radius: 12;" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-            <HBox prefHeight="23.0" prefWidth="628.0" style="-fx-background-color: #292C2D; -fx-background-radius: 12;">
+            <VBox spacing="15" style="-fx-background-color: #111315; -fx-background-radius: 12;" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+            <HBox maxHeight="462.0" maxWidth="628.0" minWidth="628.0" style="-fx-background-color: #292C2D; -fx-background-radius: 12;">
                <children>
                   <Label prefHeight="42.0" prefWidth="91.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Item Code">
                      <padding>
                         <Insets left="12.0" />
                      </padding>
                   </Label>
-                  <Label prefHeight="42.0" prefWidth="374.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Item Name">
+                  <Label prefHeight="17.0" prefWidth="338.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Item Name">
                      <padding>
-                        <Insets left="12.0" />
+                        <Insets left="12.0" top="5.0" />
                      </padding>
                   </Label>
                   <Label prefHeight="17.0" prefWidth="114.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Item Price">
                      <padding>
-                        <Insets left="12.0" />
+                        <Insets left="12.0" top="5.0" />
                      </padding>
                      <opaqueInsets>
                         <Insets />
@@ -46,7 +46,7 @@
                   </Label>
                   <Label prefHeight="17.0" prefWidth="42.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Qty">
                      <padding>
-                        <Insets left="12.0" />
+                        <Insets left="12.0" top="5.0" />
                      </padding>
                   </Label>
                </children>
@@ -54,12 +54,12 @@
                   <Insets bottom="5.0" top="5.0" />
                </padding>
             </HBox>
-            <HBox prefHeight="549.0" prefWidth="628.0" style="-fx-background-radius: 12;">
+            <HBox style="-fx-background-radius: 12;">
                <children>
                   <ScrollPane fx:id="itemScrollHolder" prefHeight="462.0" prefWidth="628.0" style="-fx-background-color: #292C2D; -fx-background-radius: 12;" />
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox>
                <children>
                   <TextField fx:id="txtNetAmount1" editable="false" maxWidth="Infinity" prefHeight="27.0" prefWidth="341.0" promptText="Item Code" style="-fx-background-color: #1C1C1C; -fx-text-fill: #FFFFFF; -fx-background-radius: 12; -fx-border-color: #404040; -fx-border-radius: 12;" />
                   <Button fx:id="btnAddItem" maxWidth="Infinity" onAction="#onDone" prefHeight="25.0" prefWidth="216.0" style="-fx-background-color: #FAC1D9; -fx-text-fill: #111315; -fx-background-radius: 12;" text="Add">
