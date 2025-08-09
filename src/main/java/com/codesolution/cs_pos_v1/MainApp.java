@@ -9,6 +9,8 @@ import javafx.stage.StageStyle;
 
 public class MainApp extends Application {
 
+    public Stage stage;
+
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxmls/Login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -17,6 +19,7 @@ public class MainApp extends Application {
         primaryStage.setTitle("Login");
         //Removing the default control buttons
         primaryStage.show();
+        stage = primaryStage;
 
         //Fade in effect
         new FadeIn(scene.getRoot()).play();

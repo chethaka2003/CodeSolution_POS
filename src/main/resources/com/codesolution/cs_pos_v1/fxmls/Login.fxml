@@ -32,7 +32,7 @@
                         <Insets />
                      </opaqueInsets>
                      <children>
-                        <VBox accessibleText="Please enter user name" prefHeight="516.0" prefWidth="513.0" styleClass="anchorPad">
+                        <VBox fx:id="loginVbox" accessibleText="Please enter user name" prefHeight="516.0" prefWidth="513.0" styleClass="anchorPad">
                            <children>
                               <HBox prefHeight="26.0" prefWidth="463.0" />
                               <HBox alignment="CENTER" prefHeight="51.0" prefWidth="463.0">
@@ -88,7 +88,7 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="69.0" prefWidth="463.0">
                                  <children>
-                                    <Button mnemonicParsing="false" onMouseClicked="#onClickLogin" prefHeight="40.0" prefWidth="111.0" styleClass="pinkBtn" text="Login">
+                                    <Button fx:id="loginBtn" mnemonicParsing="false" onMouseClicked="#onClickLogin" prefHeight="40.0" prefWidth="111.0" styleClass="pinkBtn" text="Login">
                                        <font>
                                           <Font size="14.0" />
                                        </font>

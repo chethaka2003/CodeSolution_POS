@@ -19,6 +19,7 @@
     -fx-padding: 10;
     -fx-text-fill: #EAEAEA;
     -fx-font-size: 16px;
+    -fx-font-family: 'ui-sans-serif';
 }
 
 .inputs{
@@ -53,7 +54,7 @@
 }
 
 .check-box:selected .mark {
-    -fx-background-color: #-pink-color;   /* Tick color */
+    -fx-background-color: -pink-color;   /* Tick color */
 }
 
 .pinkBlackBtn{
@@ -63,7 +64,15 @@
     -fx-border-color: -pink-color;
     -fx-border-radius: 12;
     -fx-border-width: 2;
+    -fx-transition: transform 0.8s;
 
+}
+
+.pinkBlackBtn:hover {
+    -fx-background-color:  -pink-color;
+    -fx-text-fill: -bg-color;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
 }
 
 .checkBox{
@@ -96,6 +105,7 @@
     -fx-font-size: 48px;
     -fx-text-fill: -white-color;
     -fx-font-weight: bold;
+    -fx-font-family: 'ui-sans-serif';
 }
 .Subtitle{
     -fx-font-size: 12px;
@@ -115,3 +125,12 @@
     -fx-font-family: "Calibri";
 
 }
+.bCardTitle{
+    -fx-font-size: 28px;
+    -fx-text-fill: -white-color;
+    -fx-font-weight: bold;
+    -fx-font-family: "Calibri";
+}
+
+
+
