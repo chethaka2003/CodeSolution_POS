@@ -1,14 +1,232 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Controllers.LoginController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="900.0" prefWidth="1600.0" styleClass="anchorBg" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CustomerManageController">
+   <children>
+      <HBox prefHeight="900.0" prefWidth="1600.0">
+         <children>
+            <HBox prefHeight="900.0" prefWidth="155.0">
+               <children>
+                  <AnchorPane prefHeight="900.0" prefWidth="138.0" styleClass="sidePanel">
+                     <children>
+                        <VBox prefHeight="900.0" prefWidth="138.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="119.0" prefWidth="138.0" style="-fx-spacing: 10;">
+                                 <children>
+                                    <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../Icons/dshbrdCus.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label styleClass="sideMenuItem" text="Customer Home" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="119.0" prefWidth="138.0" style="-fx-spacing: 10;">
+                                 <children>
+                                    <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../Icons/addCus.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label styleClass="sideMenuItem" text="Add Customer" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="119.0" prefWidth="138.0" style="-fx-spacing: 10;">
+                                 <children>
+                                    <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../Icons/updCus.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label styleClass="sideMenuItem" text="Update Customer" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="119.0" prefWidth="138.0" style="-fx-spacing: 10;">
+                                 <children>
+                                    <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../Icons/delCus.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label styleClass="sideMenuItem" text="Delete Customer" />
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <StackPane prefHeight="900.0" prefWidth="1448.0">
+               <children>
+                  <VBox prefHeight="900.0" prefWidth="1445.0" styleClass="anchorPad" visible="false">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="81.0" prefWidth="1395.0">
+                           <children>
+                              <ImageView fitHeight="43.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../Icons/back.png" />
+                                 </image>
+                              </ImageView>
+                              <Label styleClass="controllerName" text="Customer Dashoboard" textFill="WHITE">
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="35.0" prefWidth="1395.0" />
+                        <HBox alignment="CENTER" prefHeight="267.0" prefWidth="1395.0" style="-fx-spacing: 100;">
+                           <children>
+                              <VBox alignment="TOP_CENTER" prefHeight="289.0" prefWidth="300.0">
+                                 <children>
+                                    <Label prefHeight="45.0" prefWidth="155.0" styleClass="cusDashTitle" text="Top Customer">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="itemBox" />
+                                    <String fx:value="anchorPad" />
+                                 </styleClass>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" prefHeight="289.0" prefWidth="300.0">
+                                 <children>
+                                    <Label prefHeight="45.0" prefWidth="169.0" styleClass="cusDashTitle" text="Customer count">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="itemBox" />
+                                    <String fx:value="anchorPad" />
+                                 </styleClass>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" prefHeight="289.0" prefWidth="300.0">
+                                 <styleClass>
+                                    <String fx:value="itemBox" />
+                                    <String fx:value="anchorPad" />
+                                 </styleClass>
+                                 <children>
+                                    <Label prefHeight="45.0" prefWidth="155.0" styleClass="cusDashTitle" text="New customers">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <VBox prefHeight="479.0" prefWidth="1395.0" styleClass="anchorPad">
+                           <children>
+                              <HBox prefHeight="47.0" prefWidth="1338.0" style="-fx-spacing: 50;">
+                                 <children>
+                                    <HBox prefHeight="47.0" prefWidth="74.0" />
+                                    <TextField prefHeight="27.0" prefWidth="1100.0" promptText="Enter customer name" styleClass="lightInput" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" maxHeight="462.0" maxWidth="1345.0" minWidth="628.0" prefHeight="32.0" prefWidth="1345.0" style="-fx-background-color: #292C2D; -fx-background-radius: 12;">
+                                 <children>
+                                    <Label prefHeight="19.0" prefWidth="204.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Customer code">
+                                       <padding>
+                                          <Insets left="12.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label prefHeight="17.0" prefWidth="315.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Customer Name" />
+                                    <Label prefHeight="17.0" prefWidth="197.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Contact number">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </Label>
+                                    <Label prefHeight="17.0" prefWidth="206.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Email" />
+                                    <Label prefHeight="17.0" prefWidth="296.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Address" />
+                                    <Label prefHeight="17.0" prefWidth="119.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Last transaction date" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </padding>
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <ScrollPane prefHeight="339.0" prefWidth="1345.0" style="-fx-background-color: #292C2D; -fx-background-radius: 12;" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="anchorPad">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="92.0" prefWidth="1397.0">
+                           <children>
+                              <ImageView fitHeight="43.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../Icons/back.png" />
+                                 </image>
+                              </ImageView>
+                              <Label prefHeight="28.0" prefWidth="179.0" styleClass="controllerName" text="Add Customer" textFill="WHITE">
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="70.0" prefWidth="1397.0" />
+                        <VBox prefHeight="368.0" prefWidth="1397.0" style="-fx-spacing: 10;">
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cusInputFields" text="Customer Name :" />
+                              <TextField fx:id="cusName" prefHeight="34.0" prefWidth="1347.0" promptText="Please enter the customer name here" styleClass="lightInput" />
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cusInputFields" text="Contact number :" />
+                              <TextField fx:id="cusNum" prefHeight="34.0" prefWidth="1347.0" promptText="Please enter the customer phone number here" styleClass="lightInput" />
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cusInputFields" text="Customer Address :" />
+                              <TextField fx:id="cusAddress" prefHeight="34.0" prefWidth="1347.0" promptText="Please enter the customer address here" styleClass="lightInput" />
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cusInputFields" text="Customer Email :" />
+                              <TextField fx:id="cusEmail" prefHeight="34.0" prefWidth="1347.0" promptText="Please enter the customer email here" styleClass="lightInput" />
+                           </children>
+                           <styleClass>
+                              <String fx:value="itemBox" />
+                              <String fx:value="anchorPad" />
+                           </styleClass>
+                        </VBox>
+                        <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="1330.0">
+                           <children>
+                              <Button mnemonicParsing="false" onMouseClicked="#addCusBtn" prefHeight="31.0" prefWidth="119.0" styleClass="pinkBtn" text="Add Customer">
+                                 <graphic>
+                                    <ImageView fitHeight="16.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../Icons/plus.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets right="20.0" top="15.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </StackPane>
+         </children>
+      </HBox>
+   </children>
 </AnchorPane>

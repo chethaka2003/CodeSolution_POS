@@ -1,14 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Controllers.DashboardController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="900.0" prefWidth="1600.0" styleClass="anchorBg" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DashboardController">
+   <children>
+      <HBox alignment="CENTER_LEFT" layoutX="45.0" prefHeight="41.0" prefWidth="158.0" style="-fx-spacing: 10;" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="40.0">
+         <children>
+            <ImageView fitHeight="41.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Icons/back.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="controllerName" text="Dashboard" wrappingWidth="116.83203125">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Text>
+         </children>
+      </HBox>
+      <VBox alignment="CENTER" layoutX="50.0" layoutY="129.0" prefHeight="689.0" prefWidth="1500.0" style="-fx-spacing: 60;" styleClass="itemBox" AnchorPane.bottomAnchor="82.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="129.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="144.0" prefWidth="1500.0" style="-fx-spacing: 180;">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="menuItem">
+                     <children>
+                        <ImageView fitHeight="145.0" fitWidth="169.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../Icons/user.png" />
+                           </image>
+                        </ImageView>
+                        <Label prefHeight="22.0" prefWidth="133.0" styleClass="menuItemLabel" text="Employee /User">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="menuItem">
+                     <children>
+                        <ImageView fitHeight="210.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../Icons/inventory.png" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="menuItemLabel" text="Inventory">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="menuItem">
+                     <children>
+                        <ImageView fitHeight="210.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../Icons/dashboard.png" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="menuItemLabel" text="Dashboard">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="menuItem">
+                     <children>
+                        <ImageView fitHeight="210.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../Icons/transaction.png" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="menuItemLabel" text="Transaction">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="144.0" prefWidth="1500.0" style="-fx-spacing: 180;">
+               <children>
+                  <VBox alignment="CENTER" onMouseClicked="#onCusClick" prefHeight="200.0" prefWidth="100.0" styleClass="menuItem">
+                     <children>
+                        <ImageView fitHeight="140.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../Icons/customer.png" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="menuItemLabel" text="Customers">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="menuItem">
+                     <children>
+                        <ImageView fitHeight="210.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../Icons/wholesale.png" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="menuItemLabel" text="Suppliers">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="menuItem">
+                     <children>
+                        <ImageView fitHeight="210.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../Icons/spending.png" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="menuItemLabel" text="Expenses">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="menuItem">
+                     <children>
+                        <ImageView fitHeight="210.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../Icons/growth.png" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="menuItemLabel" text="Sales">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>
