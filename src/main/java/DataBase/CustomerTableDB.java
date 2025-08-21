@@ -55,4 +55,24 @@ public class CustomerTableDB {
 
     }
 
+    //Getting the customer form the contact number
+    public static Customer findCustomer(int phoneNumber){
+        String sql = "SELECT customer_id,customer_name,contact_number,customer_email,customer_address,createDate,totalTransaction,LastDigits FROM customer WHERE contact_number = ?;";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1,phoneNumber);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()){
+                Customer customer = new Customer(resultSet.getString("customer_id"),resultSet.getString("customer_name"), resultSet.getString("customer_email"),resultSet.getInt("contact_number"), resultSet.getString("customer_address"),resultSet.getDate("createDate"), resultSet.getInt("totalTransaction"), resultSet.getInt("LastDigits"));
+                return customer;
+            }
+            else {
+                System.out.println("Customer is not available");
+                return null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

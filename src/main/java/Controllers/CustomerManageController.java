@@ -2,14 +2,17 @@ package Controllers;
 
 import DataBase.CustomerTableDB;
 import Services.uiService;
+import animatefx.animation.FadeIn;
 import animatefx.animation.Shake;
 import com.codesolution.cs_pos_v1.Customer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 
 import java.net.URL;
 import java.sql.Date;
@@ -35,7 +38,46 @@ public class CustomerManageController implements Initializable {
     @FXML
     private TextField cusNum;
 
+    @FXML
+    private Label cusAdrsLbl;
+
+    @FXML
+    private Label cusIdLbl;
+
+    @FXML
+    private TextField cusNadres;
+
+    @FXML
+    private Label cusNameLbl;
+
+    @FXML
+    private TextField cusNmail;
+
+    @FXML
+    private TextField cusNname;
+
+    @FXML
+    private TextField cusNnum;
+
+    @FXML
+    private Label cusNumLbl;
+
+    @FXML
+    private Label cusRegDatelbl;
+
+    @FXML
+    private Label cusTotalLbl;
+
+    @FXML
+    private TextField srchCusNumbr;
+
+    @FXML
+    private HBox updateValueHbox;
+
     public void initialize(URL url, ResourceBundle resourceBundle){
+
+        //Default value for update /delete customer
+        updateValueHbox.setVisible(false);
 
         //Adding listeners to monitor the value changes
         cusNum.textProperty().addListener(new ChangeListener<String>() {
@@ -48,6 +90,20 @@ public class CustomerManageController implements Initializable {
                 }
                 else{
                     cusNum.setText(newValue);
+                }
+            }
+        });
+
+        srchCusNumbr.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d*")){
+                    uiService.giveErrorAlert("Numbers only",null,"Please enter a valid phone number");
+                    srchCusNumbr.setText(oldValue);
+                    new Shake(srchCusNumbr).play();
+                }
+                else{
+                    srchCusNumbr.setText(newValue);
                 }
             }
         });
@@ -171,6 +227,64 @@ public class CustomerManageController implements Initializable {
     public java.sql.Date getToday() {
         return java.sql.Date.valueOf(LocalDate.now());
     }
+
+    //Search customer from database
+    @FXML
+    void findCusClick(MouseEvent event) {
+        int customerPhone = Integer.parseInt(srchCusNumbr.getText());
+        Customer foundCustomer = CustomerTableDB.findCustomer(customerPhone);
+        if (foundCustomer != null){
+            System.out.println(foundCustomer.getCustomer_name());
+            srchCusNumbr.clear();
+
+            //Assigning old values into variables
+            String customerID = foundCustomer.getCustomer_id();
+            String customerName = foundCustomer.getCustomer_name();;
+            String customerAddress = foundCustomer.getCustomer_address();
+            int totalAmount = foundCustomer.getTotalTransaction();
+            Date regDate = foundCustomer.getCreate_Date();
+            String customerMail = foundCustomer.getCustomer_email();
+
+            //Assigning variables into labels
+            cusNameLbl.setText(customerName);
+            cusAdrsLbl.setText(customerAddress);
+            cusEmail.setText(customerMail);
+            cusNumLbl.setText(String.valueOf(customerPhone));
+            cusIdLbl.setText(customerID);
+            cusTotalLbl.setText(String.valueOf(totalAmount));
+            cusRegDatelbl.setText(String.valueOf(regDate));
+
+            updateValueHbox.setVisible(true);
+            new FadeIn(updateValueHbox).play();
+
+        }
+
+    }
+
+    @FXML
+    void rmveBtnClk(MouseEvent event) {
+
+    }
+
+    @FXML
+    void rstrBtnClk(MouseEvent event) {
+
+    }
+
+    //When click on update customer button
+    @FXML
+    void updtBtnClk(MouseEvent event) {
+
+        //Holding variables temporary
+
+        String newCustomerName = cusNname.getText();
+        String newCustomerEmail = cusNmail.getText();
+        int newCusNumber = Integer.parseInt(cusNnum.getText());
+        String newCusAddress = cusNadres.getText();
+
+
+    }
+
 
 
 }

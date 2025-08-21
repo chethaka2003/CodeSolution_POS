@@ -180,3 +180,20 @@
     -fx-text-fill: -white-color;
     -fx-font-weight: 300;
 }
+
+.cusUpdtFields{
+    -fx-font-size: 15;
+    -fx-font-family: "Poppins";
+    -fx-text-fill: -white-color;
+    -fx-font-weight: 500;
+}
+
+.cusUpdtInptFields{
+    -fx-font-size: 15;
+    -fx-font-family: "Poppins";
+    -fx-text-fill: -white-color;
+    -fx-font-weight: 500;
+    -fx-background-color: -light-gray;
+    -fx-border-width: 1px;
+    -fx-background-radius: 10;
+}
