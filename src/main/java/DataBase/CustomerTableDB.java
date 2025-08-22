@@ -75,4 +75,26 @@ public class CustomerTableDB {
         }
     }
 
+    //Update the data which are in customer table
+    public static void updateCusStringData(String updateTableName, String updateValue ,String whereColumn , int whereValue){
+
+        String sql = "UPDATE customer SET "+updateTableName+" = ? WHERE "+whereColumn+" = ?;";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1,updateValue);
+            preparedStatement.setInt(2,whereValue);
+
+            int rowsUpdated = preparedStatement.executeUpdate();
+            if (rowsUpdated>0){
+                System.out.println("Customer data values Updated");
+            }
+            else {
+                System.out.println("No value got updated");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

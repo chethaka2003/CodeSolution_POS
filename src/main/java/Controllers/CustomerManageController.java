@@ -25,6 +25,10 @@ public class CustomerManageController implements Initializable {
 
 
     public int intLastDigits;
+    public String out_customerName;
+    public String out_customerAddress;
+    public int out_customerNum;
+    public String out_customerEmail;
 
     @FXML
     private TextField cusAddress;
@@ -94,6 +98,26 @@ public class CustomerManageController implements Initializable {
             }
         });
 
+        cusNnum.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d*")){
+                    uiService.giveErrorAlert("Incorrect number",null,"Please enter a valid phone number");
+                    cusNnum.setText(oldValue);
+                    cusNumLbl.setText(oldValue);
+                    new Shake(cusNnum).play();
+                    new Shake(cusNumLbl).play();
+                }
+                else{
+                    cusNnum.setText(newValue);
+                    cusNumLbl.setText(newValue);
+                }
+                if (newValue.isEmpty()){
+                    cusNumLbl.setText(String.valueOf(out_customerNum));
+                }
+            }
+        });
+
         srchCusNumbr.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -122,6 +146,30 @@ public class CustomerManageController implements Initializable {
             }
         });
 
+        cusNadres.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(newValue.length() > 35){
+                    uiService.giveErrorAlert("Limit exceeded",null,"Please enter address within 35 characters");
+                    cusNadres.setText(oldValue);
+                    cusAdrsLbl.setText(oldValue);
+                    new Shake(cusNadres).play();
+                    new Shake(cusAdrsLbl).play();
+
+                }
+                else {
+                    cusNadres.setText(newValue);
+                    cusAdrsLbl.setText(newValue);
+
+                }
+                if (newValue.isEmpty()){
+                    cusAdrsLbl.setText(out_customerAddress);
+                }
+
+            }
+        });
+
+
         cusName.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -132,6 +180,45 @@ public class CustomerManageController implements Initializable {
                 }
                 else {
                     cusName.setText(newValue);
+                }
+                if (!newValue.matches("[a-zA-Z]*")){
+                    uiService.giveErrorAlert("Letters only",null,"Please enter a valid name without digits");
+                    cusName.setText(oldValue);
+                    new Shake(cusName).play();
+                }
+                else{
+                    cusName.setText(newValue);
+                }
+            }
+        });
+
+        cusNname.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(newValue.length() > 20){
+                    uiService.giveErrorAlert("Limit exceeded",null,"Please enter name within 20 characters");
+                    cusNname.setText(oldValue);
+                    cusNameLbl.setText(oldValue);
+                    new Shake(cusNname).play();
+                    new Shake(cusNameLbl).play();
+                }
+                else {
+                    cusNname.setText(newValue);
+                    cusNameLbl.setText(newValue);
+                }
+                if (newValue.isEmpty()){
+                    cusNameLbl.setText(out_customerName);
+                }
+                if (!newValue.matches("[a-zA-Z]*")){
+                    uiService.giveErrorAlert("Letters only",null,"Please enter a valid name without digits");
+                    cusNameLbl.setText(oldValue);
+                    cusNname.setText(oldValue);
+                    new Shake(cusNameLbl).play();
+                    new Shake(cusNname).play();
+                }
+                else{
+                    cusNname.setText(newValue);
+                    cusNameLbl.setText(newValue);
                 }
             }
         });
@@ -146,6 +233,26 @@ public class CustomerManageController implements Initializable {
                 }
                 else {
                     cusEmail.setText(newValue);
+                }
+            }
+        });
+
+        cusNmail.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(newValue.length() > 60){
+                    uiService.giveErrorAlert("Limit exceeded",null,"Please enter email within 60 characters");
+                    cusNmail.setText(oldValue);
+                    cusEmail.setText(oldValue);
+                    new Shake(cusNmail).play();
+                    new Shake(cusEmail).play();
+                }
+                else {
+                    cusNmail.setText(newValue);
+                    cusEmail.setText(newValue);
+                }
+                if (newValue.isEmpty()){
+                    cusEmail.setText(out_customerEmail);
                 }
             }
         });
@@ -231,31 +338,43 @@ public class CustomerManageController implements Initializable {
     //Search customer from database
     @FXML
     void findCusClick(MouseEvent event) {
-        int customerPhone = Integer.parseInt(srchCusNumbr.getText());
-        Customer foundCustomer = CustomerTableDB.findCustomer(customerPhone);
-        if (foundCustomer != null){
-            System.out.println(foundCustomer.getCustomer_name());
-            srchCusNumbr.clear();
+        if (srchCusNumbr.getText().isEmpty()){
+            uiService.giveErrorAlert("Empty value",null,"Please Enter phone number and search");
+        }
+        else {
+            int customerPhone = Integer.parseInt(srchCusNumbr.getText());
+            Customer foundCustomer = CustomerTableDB.findCustomer(customerPhone);
+            if (foundCustomer != null){
+                System.out.println(foundCustomer.getCustomer_name());
+                srchCusNumbr.clear();
 
-            //Assigning old values into variables
-            String customerID = foundCustomer.getCustomer_id();
-            String customerName = foundCustomer.getCustomer_name();;
-            String customerAddress = foundCustomer.getCustomer_address();
-            int totalAmount = foundCustomer.getTotalTransaction();
-            Date regDate = foundCustomer.getCreate_Date();
-            String customerMail = foundCustomer.getCustomer_email();
+                //Assigning old values into variables
+                String customerID = foundCustomer.getCustomer_id();
+                String customerName = foundCustomer.getCustomer_name();;
+                String customerAddress = foundCustomer.getCustomer_address();
+                int totalAmount = foundCustomer.getTotalTransaction();
+                Date regDate = foundCustomer.getCreate_Date();
+                String customerMail = foundCustomer.getCustomer_email();
 
-            //Assigning variables into labels
-            cusNameLbl.setText(customerName);
-            cusAdrsLbl.setText(customerAddress);
-            cusEmail.setText(customerMail);
-            cusNumLbl.setText(String.valueOf(customerPhone));
-            cusIdLbl.setText(customerID);
-            cusTotalLbl.setText(String.valueOf(totalAmount));
-            cusRegDatelbl.setText(String.valueOf(regDate));
+                //Assigning variables into out variables
+                out_customerAddress = customerAddress;
+                out_customerEmail = customerMail;
+                out_customerNum = customerPhone;
+                out_customerName = customerName;
 
-            updateValueHbox.setVisible(true);
-            new FadeIn(updateValueHbox).play();
+                //Assigning variables into labels
+                cusNameLbl.setText(customerName);
+                cusAdrsLbl.setText(customerAddress);
+                cusEmail.setText(customerMail);
+                cusNumLbl.setText(String.valueOf(customerPhone));
+                cusIdLbl.setText(customerID);
+                cusTotalLbl.setText(String.valueOf(totalAmount));
+                cusRegDatelbl.setText(String.valueOf(regDate));
+
+                updateValueHbox.setVisible(true);
+                new FadeIn(updateValueHbox).play();
+            }
+
 
         }
 
@@ -266,10 +385,6 @@ public class CustomerManageController implements Initializable {
 
     }
 
-    @FXML
-    void rstrBtnClk(MouseEvent event) {
-
-    }
 
     //When click on update customer button
     @FXML
@@ -277,11 +392,37 @@ public class CustomerManageController implements Initializable {
 
         //Holding variables temporary
 
-        String newCustomerName = cusNname.getText();
+
         String newCustomerEmail = cusNmail.getText();
         int newCusNumber = Integer.parseInt(cusNnum.getText());
         String newCusAddress = cusNadres.getText();
+        System.out.println(String.valueOf(newCusNumber));
 
+
+    }
+
+
+    @FXML
+    void updtCusAdrs(MouseEvent event) {
+
+    }
+
+    @FXML
+    void updtCusMail(MouseEvent event) {
+
+    }
+
+    @FXML
+    void updtCusName(MouseEvent event) {
+        if (!cusNname.getText().isEmpty()){
+            String newCustomerName = cusNname.getText();
+            CustomerTableDB.updateCusStringData("customer_name",newCustomerName,"contact_number",out_customerNum);
+
+        }
+    }
+
+    @FXML
+    void updtCusNum(MouseEvent event) {
 
     }
 
