@@ -12,4 +12,9 @@ public class DashboardController {
     void onCusClick(MouseEvent event) throws IOException {
         uiService.switchScene(event,"/com/codesolution/cs_pos_v1/fxmls/CustomerManage.fxml","/Styles/mainStyle.css");
     }
+
+    @FXML
+    void onSupplierClick(MouseEvent event) throws IOException {
+        uiService.switchScene(event,"/com/codesolution/cs_pos_v1/fxmls/SupplierManage.fxml","/Styles/mainStyle.css");
+    }
 }

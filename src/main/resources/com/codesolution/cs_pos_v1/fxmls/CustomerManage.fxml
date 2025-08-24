@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="900.0" prefWidth="1600.0" styleClass="anchorBg" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CustomerManageController">
+<AnchorPane maxHeight="900.0" maxWidth="1600.0" prefHeight="900.0" prefWidth="1600.0" styleClass="anchorBg" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CustomerManageController">
    <children>
       <HBox prefHeight="900.0" prefWidth="1600.0">
          <children>
@@ -25,9 +25,9 @@
                      <children>
                         <VBox prefHeight="900.0" prefWidth="138.0">
                            <children>
-                              <VBox alignment="CENTER" prefHeight="119.0" prefWidth="138.0" style="-fx-spacing: 10;">
+                              <VBox alignment="CENTER" onMouseClicked="#onCusHomeClicked" prefHeight="119.0" prefWidth="138.0" style="-fx-spacing: 10;">
                                  <children>
-                                    <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" styleClass="cusMenuItem">
                                        <image>
                                           <Image url="@../../../../Icons/dshbrdCus.png" />
                                        </image>
@@ -35,9 +35,9 @@
                                     <Label styleClass="sideMenuItem" text="Customer Home" />
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER" prefHeight="119.0" prefWidth="138.0" style="-fx-spacing: 10;">
+                              <VBox alignment="CENTER" onMouseClicked="#onCusAddClicked" prefHeight="119.0" prefWidth="138.0" style="-fx-spacing: 10;">
                                  <children>
-                                    <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" styleClass="cusMenuItem">
                                        <image>
                                           <Image url="@../../../../Icons/addCus.png" />
                                        </image>
@@ -45,24 +45,14 @@
                                     <Label styleClass="sideMenuItem" text="Add Customer" />
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER" prefHeight="119.0" prefWidth="138.0" style="-fx-spacing: 10;">
+                              <VBox alignment="CENTER" onMouseClicked="#onCusUpdtClicked" prefHeight="119.0" prefWidth="138.0" style="-fx-spacing: 10;">
                                  <children>
-                                    <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" styleClass="cusMenuItem">
                                        <image>
                                           <Image url="@../../../../Icons/updCus.png" />
                                        </image>
                                     </ImageView>
-                                    <Label styleClass="sideMenuItem" text="Update Customer" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="119.0" prefWidth="138.0" style="-fx-spacing: 10;">
-                                 <children>
-                                    <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../../../Icons/delCus.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label styleClass="sideMenuItem" text="Delete Customer" />
+                                    <Label prefHeight="22.0" prefWidth="93.0" styleClass="sideMenuItem" text="Update / delete" />
                                  </children>
                               </VBox>
                            </children>
@@ -76,11 +66,11 @@
             </HBox>
             <StackPane prefHeight="900.0" prefWidth="1448.0">
                <children>
-                  <VBox prefHeight="900.0" prefWidth="1445.0" styleClass="anchorPad" visible="false">
+                  <VBox fx:id="cusHomeView" prefHeight="900.0" prefWidth="1445.0" styleClass="anchorPad" visible="false">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="81.0" prefWidth="1395.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="657.0">
                            <children>
-                              <ImageView fitHeight="43.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="43.0" fitWidth="39.0" onMouseClicked="#backCusDash" pickOnBounds="true" preserveRatio="true" styleClass="backIcon">
                                  <image>
                                     <Image url="@../../../../Icons/back.png" />
                                  </image>
@@ -93,26 +83,18 @@
                            </children>
                         </HBox>
                         <HBox prefHeight="35.0" prefWidth="1395.0" />
-                        <HBox alignment="CENTER" prefHeight="267.0" prefWidth="1395.0" style="-fx-spacing: 100;">
+                        <HBox alignment="CENTER" prefHeight="218.0" prefWidth="1397.0" style="-fx-spacing: 100;">
                            <children>
-                              <VBox alignment="TOP_CENTER" prefHeight="289.0" prefWidth="300.0">
+                              <VBox alignment="TOP_CENTER" prefHeight="250.0" prefWidth="250.0">
                                  <children>
                                     <Label prefHeight="45.0" prefWidth="155.0" styleClass="cusDashTitle" text="Top Customer">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                 </children>
-                                 <styleClass>
-                                    <String fx:value="itemBox" />
-                                    <String fx:value="anchorPad" />
-                                 </styleClass>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" prefHeight="289.0" prefWidth="300.0">
-                                 <children>
-                                    <Label prefHeight="45.0" prefWidth="169.0" styleClass="cusDashTitle" text="Customer count">
+                                    <Label fx:id="topCusName" alignment="CENTER" contentDisplay="CENTER" prefHeight="156.0" prefWidth="217.0" styleClass="cusHomeRepValues" textAlignment="JUSTIFY" textFill="WHITE">
                                        <font>
-                                          <Font name="System Bold" size="15.0" />
+                                          <Font size="22.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -121,7 +103,25 @@
                                     <String fx:value="anchorPad" />
                                  </styleClass>
                               </VBox>
-                              <VBox alignment="TOP_CENTER" prefHeight="289.0" prefWidth="300.0">
+                              <VBox alignment="TOP_CENTER" prefHeight="289.0" prefWidth="250.0">
+                                 <children>
+                                    <Label prefHeight="45.0" prefWidth="169.0" styleClass="cusDashTitle" text="Customer count">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="cusCount" alignment="CENTER" contentDisplay="CENTER" prefHeight="156.0" prefWidth="217.0" styleClass="cusHomeRepValues" textAlignment="JUSTIFY" textFill="WHITE">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="itemBox" />
+                                    <String fx:value="anchorPad" />
+                                 </styleClass>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" prefHeight="289.0" prefWidth="250.0">
                                  <styleClass>
                                     <String fx:value="itemBox" />
                                     <String fx:value="anchorPad" />
@@ -132,34 +132,51 @@
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </Label>
+                                    <Label fx:id="newCusCount" alignment="CENTER" contentDisplay="CENTER" prefHeight="156.0" prefWidth="217.0" styleClass="cusHomeRepValues" textAlignment="JUSTIFY" textFill="WHITE">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                               </VBox>
                            </children>
                         </HBox>
-                        <VBox prefHeight="479.0" prefWidth="1395.0" styleClass="anchorPad">
+                        <VBox prefHeight="485.0" prefWidth="1397.0" styleClass="anchorPad">
                            <children>
-                              <HBox prefHeight="47.0" prefWidth="1338.0" style="-fx-spacing: 50;">
+                              <HBox alignment="CENTER_LEFT" maxHeight="462.0" maxWidth="1348.0" minWidth="628.0" prefHeight="42.0" prefWidth="1348.0" style="-fx-background-color: #292C2D; -fx-background-radius: 12;">
                                  <children>
-                                    <HBox prefHeight="47.0" prefWidth="74.0" />
-                                    <TextField prefHeight="27.0" prefWidth="1100.0" promptText="Enter customer name" styleClass="lightInput" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" maxHeight="462.0" maxWidth="1345.0" minWidth="628.0" prefHeight="32.0" prefWidth="1345.0" style="-fx-background-color: #292C2D; -fx-background-radius: 12;">
-                                 <children>
-                                    <Label prefHeight="19.0" prefWidth="204.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Customer code">
+                                    <Label prefHeight="28.0" prefWidth="186.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Customer code">
                                        <padding>
                                           <Insets left="12.0" />
                                        </padding>
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
                                     </Label>
-                                    <Label prefHeight="17.0" prefWidth="315.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Customer Name" />
+                                    <Label prefHeight="25.0" prefWidth="198.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Customer Name">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font></Label>
                                     <Label prefHeight="17.0" prefWidth="197.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Contact number">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
                                     </Label>
-                                    <Label prefHeight="17.0" prefWidth="206.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Email" />
-                                    <Label prefHeight="17.0" prefWidth="296.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Address" />
-                                    <Label prefHeight="17.0" prefWidth="119.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Last transaction date" />
+                                    <Label prefHeight="25.0" prefWidth="284.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Email">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font></Label>
+                                    <Label prefHeight="25.0" prefWidth="372.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Address">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font></Label>
+                                    <Label prefHeight="25.0" prefWidth="96.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Joined date">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font></Label>
                                  </children>
                                  <padding>
                                     <Insets bottom="5.0" top="5.0" />
@@ -168,16 +185,52 @@
                                     <Insets bottom="15.0" />
                                  </VBox.margin>
                               </HBox>
-                              <ScrollPane prefHeight="339.0" prefWidth="1345.0" style="-fx-background-color: #292C2D; -fx-background-radius: 12;" />
+                              <ScrollPane fx:id="customersList" maxHeight="379.0" prefHeight="379.0" prefWidth="1347.0" style="-fx-background-color: #292C2D; -fx-background-radius: 12;">
+                                 <content>
+                                    <HBox alignment="CENTER_LEFT" disable="true" prefHeight="35.0" prefWidth="1345.0" visible="false">
+                                       <children>
+                                          <Label prefHeight="23.0" prefWidth="181.0" styleClass="cusListRowData" text="Label">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <Label prefHeight="23.0" prefWidth="194.0" styleClass="cusListRowData" text="Label">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <Label prefHeight="23.0" prefWidth="195.0" styleClass="cusListRowData" text="Label">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <Label prefHeight="23.0" prefWidth="289.0" styleClass="cusListRowData" text="Label">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <Label prefHeight="23.0" prefWidth="373.0" styleClass="cusListRowData" text="Label">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <Label prefHeight="23.0" prefWidth="111.0" styleClass="cusListRowData" text="Label">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </content></ScrollPane>
                            </children>
                         </VBox>
                      </children>
                   </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="anchorPad" visible="false">
+                  <VBox fx:id="cusAddView" prefHeight="200.0" prefWidth="100.0" styleClass="anchorPad" visible="false">
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="92.0" prefWidth="1397.0">
                            <children>
-                              <ImageView fitHeight="43.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="43.0" fitWidth="39.0" onMouseClicked="#backCusAdd" pickOnBounds="true" preserveRatio="true" styleClass="backIcon">
                                  <image>
                                     <Image url="@../../../../Icons/back.png" />
                                  </image>
@@ -190,45 +243,45 @@
                            </children>
                         </HBox>
                         <HBox prefHeight="70.0" prefWidth="1397.0" />
-                        <VBox prefHeight="368.0" prefWidth="1397.0" style="-fx-spacing: 10;">
+                        <VBox prefHeight="455.0" prefWidth="1397.0" style="-fx-spacing: 10;">
                            <children>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cusInputFields" text="Customer Name :" />
-                              <TextField fx:id="cusName" prefHeight="34.0" prefWidth="1347.0" promptText="Please enter the customer name here" styleClass="lightInput" />
+                              <TextField fx:id="cusName" prefHeight="40.0" prefWidth="1347.0" promptText="Please enter the customer name here" styleClass="lightInput" />
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cusInputFields" text="Contact number :" />
-                              <TextField fx:id="cusNum" prefHeight="34.0" prefWidth="1347.0" promptText="Please enter the customer phone number here" styleClass="lightInput" />
+                              <TextField fx:id="cusNum" prefHeight="40.0" prefWidth="1347.0" promptText="Please enter the customer phone number here" styleClass="lightInput" />
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cusInputFields" text="Customer Address :" />
-                              <TextField fx:id="cusAddress" prefHeight="34.0" prefWidth="1347.0" promptText="Please enter the customer address here" styleClass="lightInput" />
+                              <TextField fx:id="cusAddress" prefHeight="40.0" prefWidth="1347.0" promptText="Please enter the customer address here" styleClass="lightInput" />
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cusInputFields" text="Customer Email :" />
-                              <TextField fx:id="cusEmail" prefHeight="34.0" prefWidth="1347.0" promptText="Please enter the customer email here" styleClass="lightInput" />
+                              <TextField fx:id="cusEmail" prefHeight="40.0" prefWidth="1347.0" promptText="Please enter the customer email here" styleClass="lightInput" />
+                              <HBox alignment="BOTTOM_RIGHT" prefHeight="72.0" prefWidth="1347.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onMouseClicked="#addCusBtn" prefHeight="37.0" prefWidth="124.0" styleClass="pinkBtn" text="Add Customer">
+                                       <graphic>
+                                          <ImageView fitHeight="16.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../Icons/plus.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                                 <padding>
+                                    <Insets right="20.0" top="15.0" />
+                                 </padding>
+                              </HBox>
                            </children>
                            <styleClass>
                               <String fx:value="itemBox" />
                               <String fx:value="anchorPad" />
                            </styleClass>
                         </VBox>
-                        <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="1330.0">
-                           <children>
-                              <Button mnemonicParsing="false" onMouseClicked="#addCusBtn" prefHeight="31.0" prefWidth="119.0" styleClass="pinkBtn" text="Add Customer">
-                                 <graphic>
-                                    <ImageView fitHeight="16.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../../../Icons/plus.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                           </children>
-                           <padding>
-                              <Insets right="20.0" top="15.0" />
-                           </padding>
-                        </HBox>
                      </children>
                   </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="anchorPad">
+                  <VBox fx:id="cusUpdtView" prefHeight="882.0" prefWidth="1447.0" styleClass="anchorPad" visible="false">
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="92.0" prefWidth="1397.0">
                            <children>
-                              <ImageView fitHeight="43.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="43.0" fitWidth="39.0" onMouseClicked="#backCusUpdt" pickOnBounds="true" preserveRatio="true" styleClass="backIcon">
                                  <image>
                                     <Image url="@../../../../Icons/back.png" />
                                  </image>
@@ -260,7 +313,7 @@
                         </HBox>
                         <HBox fx:id="updateValueHbox" alignment="CENTER" prefHeight="689.0" prefWidth="1397.0" style="-fx-spacing: 70;">
                            <children>
-                              <VBox prefHeight="674.0" prefWidth="578.0" style="-fx-spacing: 15;">
+                              <VBox prefHeight="674.0" prefWidth="579.0" style="-fx-spacing: 15;">
                                  <children>
                                     <VBox prefHeight="79.0" prefWidth="528.0">
                                        <children>

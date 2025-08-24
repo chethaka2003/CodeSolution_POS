@@ -16,6 +16,7 @@ import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 
 public class uiService {
 
@@ -66,13 +67,21 @@ public class uiService {
     }
 
     //Ask confirmation from the user
-    public static void askConfirmation(String title, String header, String content){
+    public static void askConfirmation(String title, String header, String content,Runnable onYes){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.setContentText(content);
         alert.getButtonTypes().add(ButtonType.YES);
         alert.getButtonTypes().add(ButtonType.NO);
+        alert.getButtonTypes().remove(ButtonType.OK);
+        alert.getButtonTypes().remove(ButtonType.CANCEL);
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.YES){
+            onYes.run();
+        }
+
     }
 }
 

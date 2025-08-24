@@ -11,8 +11,13 @@
 }
 
 .scroll-pane > .viewport {
-    -fx-background-color:  -light-black;
+    -fx-background-color: transparent;
     -fx-background-radius: 12;
+}
+
+.scroll-pane .scroll-bar:vertical,
+.scroll-pane .scroll-bar:horizontal {
+    -fx-opacity: 0;
 }
 
 .itemName{
@@ -196,4 +201,37 @@
     -fx-background-color: -light-gray;
     -fx-border-width: 1px;
     -fx-background-radius: 10;
+}
+
+.setActive{
+    -fx-border-width: 5;
+    -fx-border-color: -pink-color ;
+    -fx-border-radius: 12;
+}
+
+.cusMenuItem{
+    -fx-transition: transform 0.8s;
+
+}
+.cusMenuItem:hover{
+    -fx-scale-x: 1.4;
+    -fx-scale-y: 1.4;
+}
+
+.cusListRowData{
+    -fx-font-size: 15;
+    -fx-font-family: "poppins";
+    -fx-font-weight: 200;
+    -fx-text-fill: -white-color;
+    -fx-padding: 0 0 0 10;
+}
+
+.cusHomeRepValues{
+    -fx-font-size: 19;
+    -fx-font-family: "poppins";
+    -fx-font-weight: 300;
+    -fx-text-fill: -pink-color;
+}
+.backIcon{
+
 }
