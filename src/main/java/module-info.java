@@ -6,6 +6,11 @@ module com.codesolution.cs_pos_v1 {
     requires java.sql;
     requires animatefx;
     requires org.controlsfx.controls;
+    requires java.desktop;
+    requires kernel;
+    requires layout;
+    requires barcodes;
+    requires io;
 
     opens com.codesolution.cs_pos_v1 to javafx.fxml;
     exports com.codesolution.cs_pos_v1;
