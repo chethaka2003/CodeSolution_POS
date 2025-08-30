@@ -450,11 +450,12 @@ public class CustomerManageController implements Initializable {
     //Search customer from database
     @FXML
     void findCusClick() {
-        if (srchCusNumbr.getText().isEmpty()){
-            uiService.giveErrorAlert("Empty value",null,"Please Enter phone number and search");
+        if (srchCusNumbr.getText().isEmpty() || !(srchCusNumbr.getText().length() == 10)){
+            uiService.giveErrorAlert("Empty value",null,"Please Enter valid phone number and search");
         }
         else {
             int customerPhone = Integer.parseInt(srchCusNumbr.getText());
+            out_customerNum = customerPhone;
             Customer foundCustomer = CustomerTableDB.findCustomer(customerPhone);
             if (foundCustomer != null){
                 System.out.println(foundCustomer.getCustomer_name());
@@ -509,6 +510,7 @@ public class CustomerManageController implements Initializable {
         }
         else{
             uiService.giveErrorAlert("Empty value",null,"Please enter a valid customer name");
+            cusAdrsLbl.setText(out_customerAddress);
         }
     }
 
@@ -522,6 +524,7 @@ public class CustomerManageController implements Initializable {
         }
         else {
             uiService.giveErrorAlert("Empty value",null,"Please enter a valid customer email");
+            cusEmail.setText(out_customerEmail);
         }
     }
 
@@ -538,6 +541,8 @@ public class CustomerManageController implements Initializable {
         }
         else {
            uiService.giveErrorAlert("Empty value",null,"Please enter a valid customer name");
+            cusNameLbl.setText(out_customerName);
+
         }
 
     }
@@ -553,6 +558,7 @@ public class CustomerManageController implements Initializable {
         }
         else {
             uiService.giveErrorAlert("Empty value or incorrect phone number",null,"Please enter a valid customer Phone number");
+            cusNumLbl.setText(String.valueOf(out_customerNum));
         }
 
     }

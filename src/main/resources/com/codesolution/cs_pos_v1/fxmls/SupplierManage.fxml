@@ -15,15 +15,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="900.0" maxWidth="1600.0" prefHeight="900.0" prefWidth="1600.0" styleClass="anchorBg" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SupplierManageController">
+<AnchorPane prefHeight="900.0" prefWidth="1600.0" styleClass="anchorBg" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SupplierManageController">
    <children>
-      <HBox layoutX="-12.0" prefHeight="900.0" prefWidth="1600.0">
+      <HBox layoutX="-2.0" prefHeight="910.0" prefWidth="1600.0">
          <children>
             <HBox prefHeight="900.0" prefWidth="155.0">
                <children>
                   <AnchorPane prefHeight="900.0" prefWidth="138.0" styleClass="sidePanel">
                      <children>
-                        <VBox layoutX="14.0" prefHeight="900.0" prefWidth="138.0">
+                        <VBox layoutX="7.0" layoutY="-10.0" prefHeight="910.0" prefWidth="138.0">
                            <children>
                               <VBox alignment="CENTER" onMouseClicked="#onSupHomeClicked" prefHeight="119.0" prefWidth="138.0" style="-fx-spacing: 10;">
                                  <children>
@@ -66,7 +66,7 @@
             </HBox>
             <StackPane prefHeight="900.0" prefWidth="1448.0">
                <children>
-                  <VBox fx:id="supHomeView" prefHeight="900.0" prefWidth="1445.0" styleClass="anchorPad">
+                  <VBox fx:id="supHomeView" prefHeight="900.0" prefWidth="1445.0" styleClass="anchorPad" visible="false">
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="657.0">
                            <children>
@@ -193,17 +193,41 @@
                         <VBox prefHeight="623.0" prefWidth="1397.0" style="-fx-spacing: 10;">
                            <children>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cusInputFields" text="Supplier Name :" />
-                              <TextField fx:id="supName" prefHeight="40.0" prefWidth="1347.0" promptText="Please enter the supplier name here" styleClass="lightInput" />
+                              <TextField fx:id="supName" prefHeight="40.0" prefWidth="1347.0" promptText="Please enter the supplier name here" styleClass="lightInput">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cusInputFields" text="Supplier number :" />
-                              <TextField fx:id="supNum" prefHeight="40.0" prefWidth="1347.0" promptText="Please enter the supplier phone number here" styleClass="lightInput" />
+                              <TextField fx:id="supNum" prefHeight="40.0" prefWidth="1347.0" promptText="Please enter the supplier phone number here" styleClass="lightInput">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cusInputFields" text="Supplier Address :" />
-                              <TextField fx:id="supAddress" prefHeight="40.0" prefWidth="1347.0" promptText="Please enter the supplier address here" styleClass="lightInput" />
+                              <TextField fx:id="supAddress" prefHeight="40.0" prefWidth="1347.0" promptText="Please enter the supplier address here" styleClass="lightInput">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cusInputFields" text="Supplier Email :" />
-                              <TextField fx:id="supEmail" prefHeight="40.0" prefWidth="1347.0" promptText="Please enter the supplier email here" styleClass="lightInput" />
+                              <TextField fx:id="supEmail" prefHeight="40.0" prefWidth="1347.0" promptText="Please enter the supplier email here" styleClass="lightInput">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cusInputFields" text="Supplier Company name :" />
-                              <TextField fx:id="supCompanyName" prefHeight="40.0" prefWidth="1347.0" promptText="Please enter the supplier company name here" styleClass="lightInput" />
+                              <TextField fx:id="supCompanyName" prefHeight="40.0" prefWidth="1347.0" promptText="Please enter the supplier company name here" styleClass="lightInput">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cusInputFields" text="Supplier note :" />
-                              <TextField fx:id="supNote" prefHeight="40.0" prefWidth="1347.0" promptText="Please enter any supplier note in here" styleClass="lightInput" />
+                              <TextField fx:id="supNote" prefHeight="40.0" prefWidth="1347.0" promptText="Please enter any supplier note in here" styleClass="lightInput">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
                               <HBox alignment="BOTTOM_RIGHT" prefHeight="55.0" prefWidth="1347.0">
                                  <children>
                                     <Button mnemonicParsing="false" onMouseClicked="#addSupBtn" prefHeight="37.0" prefWidth="124.0" styleClass="pinkBtn" text="Add Supplier">
@@ -266,7 +290,7 @@
                            <children>
                               <VBox prefHeight="674.0" prefWidth="579.0" style="-fx-spacing: 15;">
                                  <children>
-                                    <VBox prefHeight="79.0" prefWidth="528.0">
+                                    <VBox prefHeight="70.0" prefWidth="529.0">
                                        <children>
                                           <Label styleClass="cusUpdtFields" text="Supplier ID ">
                                              <padding>
@@ -280,7 +304,7 @@
                                           </Label>
                                        </children>
                                     </VBox>
-                                    <VBox prefHeight="79.0" prefWidth="528.0">
+                                    <VBox prefHeight="70.0" prefWidth="528.0">
                                        <children>
                                           <Label styleClass="cusUpdtFields" text="Supplier Name ">
                                              <padding>
@@ -294,7 +318,7 @@
                                           </Label>
                                        </children>
                                     </VBox>
-                                    <VBox prefHeight="79.0" prefWidth="528.0">
+                                    <VBox prefHeight="70.0" prefWidth="528.0">
                                        <children>
                                           <Label styleClass="cusUpdtFields" text="Supplier note">
                                              <padding>
@@ -308,7 +332,7 @@
                                           </Label>
                                        </children>
                                     </VBox>
-                                    <VBox prefHeight="79.0" prefWidth="528.0">
+                                    <VBox prefHeight="70.0" prefWidth="528.0">
                                        <children>
                                           <Label styleClass="cusUpdtFields" text="Supplier number">
                                              <padding>
@@ -322,7 +346,7 @@
                                           </Label>
                                        </children>
                                     </VBox>
-                                    <VBox prefHeight="79.0" prefWidth="528.0">
+                                    <VBox prefHeight="70.0" prefWidth="528.0">
                                        <children>
                                           <Label styleClass="cusUpdtFields" text="Supplier Address">
                                              <padding>
@@ -336,7 +360,7 @@
                                           </Label>
                                        </children>
                                     </VBox>
-                                    <VBox prefHeight="79.0" prefWidth="528.0">
+                                    <VBox prefHeight="70.0" prefWidth="528.0">
                                        <children>
                                           <Label styleClass="cusUpdtFields" text="Supplier Company name">
                                              <padding>
@@ -344,6 +368,20 @@
                                              </padding>
                                           </Label>
                                           <Label fx:id="supCompanyNameLbl" prefHeight="45.0" prefWidth="528.0" styleClass="cusUpdtInptFields" text="Label">
+                                             <padding>
+                                                <Insets left="10.0" right="10.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="70.0" prefWidth="528.0">
+                                       <children>
+                                          <Label styleClass="cusUpdtFields" text="Supplier Email :">
+                                             <padding>
+                                                <Insets bottom="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <Label fx:id="supEmailLbl" prefHeight="45.0" prefWidth="528.0" styleClass="cusUpdtInptFields" text="Label">
                                              <padding>
                                                 <Insets left="10.0" right="10.0" />
                                              </padding>
@@ -370,7 +408,7 @@
                                     <String fx:value="anchorPad" />
                                  </styleClass>
                                  <children>
-                                    <VBox prefHeight="130.0" prefWidth="528.0">
+                                    <VBox prefHeight="115.0" prefWidth="528.0">
                                        <children>
                                           <Label styleClass="cusUpdtFields" text="Supplier's new name">
                                              <padding>
@@ -398,7 +436,7 @@
                                           </VBox>
                                        </children>
                                     </VBox>
-                                    <VBox prefHeight="130.0" prefWidth="528.0">
+                                    <VBox prefHeight="115.0" prefWidth="528.0">
                                        <children>
                                           <Label styleClass="cusUpdtFields" text="Supplier's new address">
                                              <padding>
@@ -420,7 +458,7 @@
                                           </VBox>
                                        </children>
                                     </VBox>
-                                    <VBox prefHeight="130.0" prefWidth="528.0">
+                                    <VBox prefHeight="115.0" prefWidth="528.0">
                                        <children>
                                           <Label styleClass="cusUpdtFields" text="Supplier's new contact number">
                                              <padding>
@@ -442,7 +480,7 @@
                                           </VBox>
                                        </children>
                                     </VBox>
-                                    <VBox prefHeight="130.0" prefWidth="528.0">
+                                    <VBox prefHeight="115.0" prefWidth="528.0">
                                        <children>
                                           <Label styleClass="cusUpdtFields" text="Supplier's new Email">
                                              <padding>
@@ -464,7 +502,7 @@
                                           </VBox>
                                        </children>
                                     </VBox>
-                                    <VBox prefHeight="130.0" prefWidth="528.0">
+                                    <VBox prefHeight="115.0" prefWidth="528.0">
                                        <children>
                                           <Label styleClass="cusUpdtFields" text="Supplier's new Company name">
                                              <padding>
@@ -479,6 +517,28 @@
                                           <VBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="528.0">
                                              <children>
                                                 <Button mnemonicParsing="false" onMouseClicked="#updtSupCmpnyName" prefHeight="25.0" prefWidth="86.0" styleClass="pinkBtn" text="Update" />
+                                             </children>
+                                             <padding>
+                                                <Insets right="10.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="115.0" prefWidth="528.0">
+                                       <children>
+                                          <Label styleClass="cusUpdtFields" text="Supplier's new Note">
+                                             <padding>
+                                                <Insets bottom="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <TextField fx:id="supNnote" prefHeight="45.0" prefWidth="528.0" promptText="Enter new company name" styleClass="lightInput">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </TextField>
+                                          <VBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="528.0">
+                                             <children>
+                                                <Button mnemonicParsing="false" onMouseClicked="#updtSupNote" prefHeight="25.0" prefWidth="86.0" styleClass="pinkBtn" text="Update" />
                                              </children>
                                              <padding>
                                                 <Insets right="10.0" />

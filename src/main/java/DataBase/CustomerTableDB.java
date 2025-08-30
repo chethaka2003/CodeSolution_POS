@@ -71,6 +71,7 @@ public class CustomerTableDB {
             }
             else {
                 System.out.println("Customer is not available");
+                uiService.giveErrorAlert("Invalid Phone number",null,"This phone number is not available in the database");
                 return null;
             }
         } catch (SQLException e) {

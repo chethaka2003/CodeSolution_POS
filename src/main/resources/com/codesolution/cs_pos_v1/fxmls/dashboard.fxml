@@ -46,7 +46,7 @@
                         <Insets />
                      </HBox.margin>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="menuItem">
+                  <VBox alignment="CENTER" onMouseClicked="#onInventoryClicked" prefHeight="200.0" prefWidth="100.0" styleClass="menuItem">
                      <children>
                         <ImageView fitHeight="210.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
                            <image>

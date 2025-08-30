@@ -15,6 +15,11 @@ public class DashboardController {
 
     @FXML
     void onSupplierClick(MouseEvent event) throws IOException {
-        uiService.switchScene(event,"/com/codesolution/cs_pos_v1/fxmls/SupplierManage.fxml","/Styles/mainStyle.css");
+        uiService.switchScene(event, "/com/codesolution/cs_pos_v1/fxmls/SupplierManage.fxml","/Styles/mainStyle.css");
+    }
+
+    @FXML
+    void onInventoryClicked(MouseEvent event) throws IOException {
+        uiService.switchScene(event, "/com/codesolution/cs_pos_v1/fxmls/ItemManage.fxml","/Styles/mainStyle.css");
     }
 }

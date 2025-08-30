@@ -3,6 +3,7 @@ package Controllers;
 import DataBase.CustomerTableDB;
 import DataBase.SupplierTableDB;
 import Services.uiService;
+import animatefx.animation.FadeIn;
 import animatefx.animation.Shake;
 import com.codesolution.cs_pos_v1.Customer;
 import com.codesolution.cs_pos_v1.Supplier;
@@ -12,6 +13,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -68,6 +71,9 @@ public class SupplierManageController implements Initializable {
     private Label supNameLbl;
 
     @FXML
+    private Label supEmailLbl;
+
+    @FXML
     private TextField supNcompany;
 
     @FXML
@@ -84,6 +90,9 @@ public class SupplierManageController implements Initializable {
 
     @FXML
     private Label supNoteLbl;
+
+    @FXML
+    private TextField supNnote;
 
     @FXML
     private TextField supNum;
@@ -104,6 +113,13 @@ public class SupplierManageController implements Initializable {
     private HBox updateValueHbox;
 
     public int intLastDigits;
+
+    public String out_supplierName;
+    public String out_supplierEmail;
+    public String out_supplierCompanyName;
+    public String out_supplierAddress;
+    public String out_supplierNote;
+    public int out_supplierPhoneNumber;
 
     public void initialize(URL url, ResourceBundle resourceBundle){
 
@@ -201,9 +217,9 @@ public class SupplierManageController implements Initializable {
                     supNnum.setText(newValue);
                     supNumLbl.setText(newValue);
                 }
-//                if (newValue.isEmpty()){
-//                    supNumLbl.setText(String.valueOf(out_customerNum));
-//                }
+                if (newValue.isEmpty()){
+                    supNumLbl.setText(String.valueOf(out_supplierPhoneNumber));
+                }
             }
         });
 
@@ -251,10 +267,76 @@ public class SupplierManageController implements Initializable {
                     supAdrsLbl.setText(newValue);
 
                 }
-//                if (newValue.isEmpty()){
-//                    supAdrsLbl.setText(out_customerAddress);
-//                }
+                if (newValue.isEmpty()){
+                    supAdrsLbl.setText(out_supplierAddress);
+                }
 
+            }
+        });
+
+        supCompanyName.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (newValue.length()>25){
+                    uiService.giveErrorAlert("Limit exceeded",null,"Please enter name within 20 characters");
+                    supCompanyName.setText(oldValue);
+                    new Shake(supCompanyName).play();
+
+                }
+                else{
+                    supName.setText(newValue);
+                }
+            }
+        });
+
+        supNcompany.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (newValue.length()>25){
+                    uiService.giveErrorAlert("Limit exceeded",null,"Please enter name within 20 characters");
+                    supNcompany.setText(oldValue);
+                    supCompanyNameLbl.setText(oldValue);
+                    new Shake(supNcompany).play();
+                    new Shake(supCompanyNameLbl).play();
+
+                }
+                else{
+                    supNcompany.setText(newValue);
+                    supCompanyNameLbl.setText(newValue);
+                }
+            }
+        });
+
+        supNote.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (newValue.length()>35){
+                    uiService.giveErrorAlert("Limit exceeded",null,"Please enter note within 20 characters");
+                    supNote.setText(oldValue);
+                    new Shake(supNote).play();
+
+                }
+                else{
+                    supNote.setText(newValue);
+                }
+            }
+        });
+
+        supNnote.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (newValue.length()>35){
+                    uiService.giveErrorAlert("Limit exceeded",null,"Please enter note within 20 characters");
+                    supNnote.setText(oldValue);
+                    supNoteLbl.setText(oldValue);
+                    new Shake(supNnote).play();
+                    new Shake(supNoteLbl).play();
+
+                }
+                else{
+                    supNnote.setText(newValue);
+                    supNoteLbl.setText(newValue);
+                }
             }
         });
 
@@ -295,9 +377,9 @@ public class SupplierManageController implements Initializable {
                     supNname.setText(newValue);
                     supNameLbl.setText(newValue);
                 }
-//                if (newValue.isEmpty()){
-//                    supNameLbl.setText(out_customerName);
-//                }
+                if (newValue.isEmpty()){
+                    supNameLbl.setText(out_supplierName);
+                }
                 if (!newValue.matches("[a-zA-Z ]*")){
                     uiService.giveErrorAlert("Letters only",null,"Please enter a valid name without digits");
                     supNameLbl.setText(oldValue);
@@ -308,6 +390,9 @@ public class SupplierManageController implements Initializable {
                 else{
                     supNname.setText(newValue);
                     supNameLbl.setText(newValue);
+                }
+                if (newValue.isEmpty()){
+                    supEmail.setText(out_supplierEmail);
                 }
             }
         });
@@ -340,9 +425,9 @@ public class SupplierManageController implements Initializable {
                     supNmail.setText(newValue);
                     supEmail.setText(newValue);
                 }
-//                if (newValue.isEmpty()){
-//                    supEmail.setText(out_customerEmail);
-//                }
+                if (newValue.isEmpty()){
+                    supEmailLbl.setText(out_supplierEmail);
+                }
             }
         });
     createSupListRow(suppliersList);
@@ -353,69 +438,240 @@ public class SupplierManageController implements Initializable {
     }
 
 
+    //Creating back buttons
     @FXML
-    void backSupAdd(MouseEvent event) {
-
+    void backSupAdd(MouseEvent event) throws IOException {
+        uiService.switchScene(event,"/com/codesolution/cs_pos_v1/fxmls/dashboard.fxml","/Styles/mainStyle.css");
     }
 
     @FXML
-    void backSupDash(MouseEvent event) {
-
+    void backSupDash(MouseEvent event) throws IOException {
+        uiService.switchScene(event,"/com/codesolution/cs_pos_v1/fxmls/dashboard.fxml","/Styles/mainStyle.css");
     }
 
     @FXML
-    void backSupUpdt(MouseEvent event) {
-
+    void backSupUpdt(MouseEvent event) throws IOException {
+        uiService.switchScene(event,"/com/codesolution/cs_pos_v1/fxmls/dashboard.fxml","/Styles/mainStyle.css");
     }
 
     @FXML
-    void findSupClick(MouseEvent event) {
+    void findSupClick() {
+        if (supSrchNumbr.getText().isEmpty() || !(supSrchNumbr.getText().length() ==10)){
+            uiService.giveErrorAlert("Empty value",null,"Please Enter valid phone number and search");
 
+        }
+        else {
+            int supplierPhone = Integer.parseInt(supSrchNumbr.getText());
+            out_supplierPhoneNumber = supplierPhone;
+            Supplier foundSupplier = SupplierTableDB.findSupplier(supplierPhone);
+            if (foundSupplier != null){
+                System.out.println(foundSupplier.getSupplierName());
+                supSrchNumbr.clear();
+
+                //Assigning old values into variables
+                int supplierPhoneNumber = foundSupplier.getSupContactNumber();
+                String supplierID = foundSupplier.getSupplierID();
+                String supplierName = foundSupplier.getSupplierName();
+                String supplierAddress = foundSupplier.getSupAddress();
+                String supplierMail = foundSupplier.getSupEmail();
+                String supplierCompanyName = foundSupplier.getSupCompanayName();
+                String supplierNote = foundSupplier.getSupNote();
+
+                //Assigning variables into out variables
+                out_supplierPhoneNumber = supplierPhoneNumber;
+                out_supplierCompanyName = supplierCompanyName;
+                out_supplierEmail = supplierMail;
+                out_supplierName = supplierName;
+                out_supplierNote = supplierNote;
+                out_supplierAddress = supplierAddress;
+
+                //Assigning variables into labels
+                supNameLbl.setText(supplierName);
+                supAdrsLbl.setText(supplierAddress);
+                supEmailLbl.setText(supplierMail);
+                supNumLbl.setText(String.valueOf(supplierPhoneNumber));
+                supIdLbl.setText(supplierID);
+                supNoteLbl.setText(supplierNote);
+                supCompanyNameLbl.setText(supplierCompanyName);
+
+                updateValueHbox.setVisible(true);
+                new FadeIn(updateValueHbox).play();
+            }
+
+
+        }
     }
 
     @FXML
     void onSupAddClicked(MouseEvent event) {
+        Node clickedNode = (Node) event.getSource();
+
+        Parent parent = clickedNode.getParent();
+
+        for (Node child : parent.getChildrenUnmodifiable()) {
+            child.getStyleClass().remove("setActive");
+        }
+
+        clickedNode.getStyleClass().add("setActive");
+
+        System.out.println("Clicked: " + clickedNode);
+        supHomeView.setVisible(false);
+        new FadeIn(supHomeView).play();
+        supUpdtView.setVisible(false);
+        supAddView.setVisible(true);
 
     }
 
     @FXML
     void onSupHomeClicked(MouseEvent event) {
+        Node clickedNode = (Node) event.getSource();
+
+        Parent parent = clickedNode.getParent();
+
+        for (Node child : parent.getChildrenUnmodifiable()) {
+            child.getStyleClass().remove("setActive");
+        }
+
+        clickedNode.getStyleClass().add("setActive");
+
+        System.out.println("Clicked: " + clickedNode);
+        supHomeView.setVisible(true);
+        new FadeIn(supHomeView).play();
+        supUpdtView.setVisible(false);
+        supAddView.setVisible(false);
+
+        createSupListRow(suppliersList);
 
     }
 
+    //Customer update button is clicked
     @FXML
     void onSupUpdtClicked(MouseEvent event) {
+        Node clickedNode = (Node) event.getSource();
+
+        Parent parent = clickedNode.getParent();
+
+        for (Node child : parent.getChildrenUnmodifiable()) {
+            child.getStyleClass().remove("setActive");
+        }
+
+        clickedNode.getStyleClass().add("setActive");
+
+        updateValueHbox.setVisible(false);
+        System.out.println("Clicked: " + clickedNode);
+        supHomeView.setVisible(false);
+        new FadeIn(supHomeView).play();
+        supUpdtView.setVisible(true);
+        supAddView.setVisible(false);
 
     }
 
     @FXML
     void rmveBtnClk(MouseEvent event) {
-
-    }
-
-    @FXML
-    void updtSupAdrs(MouseEvent event) {
-
-    }
-
-    @FXML
-    void updtSupCmpnyName(MouseEvent event) {
-
-    }
-
-    @FXML
-    void updtSupMail(MouseEvent event) {
-
+        uiService.askConfirmation("Delete Supplier",null,"Are you sure you want to delete current Supplier",()->SupplierTableDB.deleteSupplier(out_supplierPhoneNumber));
+        updateValueHbox.setVisible(false);
     }
 
     @FXML
     void updtSupName(MouseEvent event) {
+        if (!supNname.getText().isEmpty()){
+            String newSupplierName = supNname.getText();
+            uiService.askConfirmation("Supplier name Update",null,"Are you want to change Supplier name",() ->SupplierTableDB.updateSupStringData("supplier_name",newSupplierName,"supplier_phoneNumber",out_supplierPhoneNumber));
+            supNname.clear();
+            supNameLbl.setText(newSupplierName);
+            ;
 
+        }
+        else {
+            uiService.giveErrorAlert("Empty value",null,"Please enter a valid Supplier name");
+            supNameLbl.setText(out_supplierName);
+
+        }
+    }
+
+    @FXML
+    void updtSupNote(MouseEvent event) {
+        if (!supNnote.getText().isEmpty()){
+            String newSupplierNote = supNnote.getText();
+            uiService.askConfirmation("Supplier note Update",null,"Are you want to change Supplier note",() ->SupplierTableDB.updateSupStringData("supplier_note",newSupplierNote,"supplier_phoneNumber",out_supplierPhoneNumber));
+            supNnote.clear();
+            supNoteLbl.setText(newSupplierNote);
+            ;
+
+        }
+        else {
+            uiService.giveErrorAlert("Empty value",null,"Please enter a valid Supplier note");
+            supNoteLbl.setText(out_supplierNote);
+
+        }
+    }
+
+    @FXML
+    void updtSupCmpnyName(MouseEvent event) {
+        if (!supNcompany.getText().isEmpty()){
+            String newSupplierCompany = supNcompany.getText();
+            uiService.askConfirmation("Supplier Company Update",null,"Are you want to change Supplier note",() ->SupplierTableDB.updateSupStringData("supplier_company",newSupplierCompany,"supplier_phoneNumber",out_supplierPhoneNumber));
+            supNcompany.clear();
+            supCompanyNameLbl.setText(newSupplierCompany);
+            ;
+
+        }
+        else {
+            uiService.giveErrorAlert("Empty value",null,"Please enter a valid Supplier company");
+            supCompanyNameLbl.setText(out_supplierCompanyName);
+
+        }
+    }
+
+    @FXML
+    void updtSupMail(MouseEvent event) {
+        if (!supNmail.getText().isEmpty()){
+            String newSupplierEmail= supNmail.getText();
+            uiService.askConfirmation("Supplier Email Update",null,"Are you want to change Supplier Email",() ->SupplierTableDB.updateSupStringData("supplier_email",newSupplierEmail,"supplier_phoneNumber",out_supplierPhoneNumber));
+            supNmail.clear();
+            supEmailLbl.setText(newSupplierEmail);
+            ;
+
+        }
+        else {
+            uiService.giveErrorAlert("Empty value",null,"Please enter a valid Supplier Email");
+            supEmailLbl.setText(out_supplierEmail);
+
+        }
+    }
+
+    @FXML
+    void updtSupAdrs (MouseEvent event) {
+        if (!supNadres.getText().isEmpty()){
+            String newSupplierAddress= supNadres.getText();
+            uiService.askConfirmation("Supplier Address Update",null,"Are you want to change Supplier Address",() ->SupplierTableDB.updateSupStringData("supplier_address",newSupplierAddress,"supplier_phoneNumber",out_supplierPhoneNumber));
+            supNadres.clear();
+            supAdrsLbl.setText(newSupplierAddress);
+            ;
+
+        }
+        else {
+            uiService.giveErrorAlert("Empty value",null,"Please enter a valid Supplier Address");
+            supAdrsLbl.setText(out_supplierAddress);
+
+        }
     }
 
     @FXML
     void updtSupNum(MouseEvent event) {
+        if (!supNnum.getText().isEmpty()){
+            int newSupplierNumber= Integer.parseInt(supNnum.getText());
+            uiService.askConfirmation("Supplier Number Update",null,"Are you want to change Supplier Number",() ->SupplierTableDB.updateSupIntegerData("supplier_phoneNumber",newSupplierNumber,"supplier_phoneNumber",out_supplierPhoneNumber));
+            supNnum.clear();
+            supNumLbl.setText(String.valueOf(newSupplierNumber));
+            ;
 
+        }
+        else {
+            uiService.giveErrorAlert("Empty value",null,"Please enter a valid Supplier Number");
+            supNumLbl.setText(String.valueOf(out_supplierPhoneNumber));
+
+        }
     }
 
 
@@ -539,7 +795,7 @@ public class SupplierManageController implements Initializable {
 
             //Creating phone number column
             Label number =new Label(String.valueOf(supplier.getSupContactNumber()));
-            number.setPrefSize(197.00,23.00);
+            number.setPrefSize(194.00,23.00);
             number.getStyleClass().add("cusListRowData");
 
             //Creating email column
@@ -554,7 +810,7 @@ public class SupplierManageController implements Initializable {
 
             //Creating address column
             Label date =new Label(supplier.getSupCompanayName());
-            date.setPrefSize(162.00,23.00);
+            date.setPrefSize(165.00,23.00);
             date.getStyleClass().add("cusListRowData");
 
             //Adding the children into Hbox
