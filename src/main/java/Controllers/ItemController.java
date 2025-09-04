@@ -422,7 +422,7 @@ public class ItemController implements Initializable {
 
 
 
-
+    //Adding home click button
     @FXML
     void onItemHomeClicked(MouseEvent event) {
 
