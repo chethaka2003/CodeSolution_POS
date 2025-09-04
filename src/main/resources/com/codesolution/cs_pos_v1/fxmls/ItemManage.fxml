@@ -4,6 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -65,7 +66,7 @@
             </HBox>
             <StackPane prefHeight="900.0" prefWidth="1448.0">
                <children>
-                  <VBox fx:id="itemAddView" prefHeight="200.0" prefWidth="100.0" styleClass="anchorPad">
+                  <VBox fx:id="itemAddView" prefHeight="200.0" prefWidth="100.0" styleClass="anchorPad" visible="false">
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="1397.0">
                            <children>
@@ -314,6 +315,37 @@
                               <String fx:value="anchorPad" />
                            </styleClass>
                         </VBox>
+                        <VBox prefHeight="89.0" prefWidth="1397.0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <children>
+                              <HBox prefHeight="40.0" prefWidth="1347.0" style="-fx-spacing: 20;">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="1346.0">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cusInputFields" text="Item Barcode (Optional) :" />
+                                          <TextField fx:id="itemBarCode" prefHeight="39.0" prefWidth="1139.0" promptText="Enter barcode if you want to add barcode seperately" styleClass="lightInput">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <styleClass>
+                              <String fx:value="itemBox" />
+                              <String fx:value="anchorPad" />
+                           </styleClass>
+                           <VBox.margin>
+                              <Insets top="40.0" />
+                           </VBox.margin>
+                        </VBox>
                         <HBox alignment="BOTTOM_RIGHT" prefHeight="78.0" prefWidth="1397.0" style="-fx-spacing: 20;">
                            <children>
                               <Button mnemonicParsing="false" onMouseClicked="#onClickPrintBarcode" prefHeight="38.0" prefWidth="141.0" styleClass="pinkBtn" text="Print Barcode" textFill="#e4a6a6">
@@ -330,6 +362,705 @@
                            <padding>
                               <Insets right="10.0" />
                            </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="cusUpdtView" prefHeight="882.0" prefWidth="1447.0" styleClass="anchorPad" visible="false">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="92.0" prefWidth="1397.0">
+                           <children>
+                              <ImageView fitHeight="43.0" fitWidth="39.0" onMouseClicked="#backItemUpdt" pickOnBounds="true" preserveRatio="true" styleClass="backIcon">
+                                 <image>
+                                    <Image url="@../../../../Icons/back.png" />
+                                 </image>
+                              </ImageView>
+                              <Label prefHeight="28.0" prefWidth="287.0" styleClass="controllerName" text="Update / Remove Item" textFill="WHITE">
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="70.0" prefWidth="1397.0" style="-fx-spacing: 18;">
+                           <children>
+                              <TextField fx:id="srchItemId" prefHeight="40.0" prefWidth="1246.0" promptText="Enter item ID or Barcode ID" styleClass="lightInput">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
+                              <Button mnemonicParsing="false" onMouseClicked="#findItemClick" prefHeight="40.0" prefWidth="113.0" styleClass="pinkBtn" text="Find">
+                                 <graphic>
+                                    <ImageView fitHeight="19.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../Icons/find.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="updateValueHbox" alignment="CENTER" prefHeight="689.0" prefWidth="1397.0" style="-fx-spacing: 70;">
+                           <children>
+                              <VBox prefHeight="674.0" prefWidth="579.0" style="-fx-spacing: 15;">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="151.0" prefWidth="529.0">
+                                       <children>
+                                          <ImageView fx:id="itemImage" fitHeight="153.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" styleClass="itemImage" />
+                                       </children>
+                                    </VBox>
+                                    <ScrollPane prefHeight="454.0" prefWidth="529.0">
+                                       <content>
+                                          <VBox prefHeight="699.0" prefWidth="513.0">
+                                             <children>
+                                                <HBox alignment="CENTER" prefHeight="41.0" prefWidth="529.0">
+                                                   <children>
+                                                      <Label prefHeight="33.0" prefWidth="200.0" styleClass="cusUpdtFields" text="Item Code :">
+                                                         <HBox.margin>
+                                                            <Insets right="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <Label fx:id="itemCodeLbl" prefHeight="33.0" prefWidth="380.0" styleClass="cusUpdtInptFields" text="Label">
+                                                         <padding>
+                                                            <Insets left="10.0" right="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="41.0" prefWidth="529.0">
+                                                   <children>
+                                                      <Label prefHeight="33.0" prefWidth="200.0" styleClass="cusUpdtFields" text="Item Name :">
+                                                         <HBox.margin>
+                                                            <Insets right="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <Label fx:id="itemNameLbl" prefHeight="33.0" prefWidth="380.0" styleClass="cusUpdtInptFields" text="Label">
+                                                         <padding>
+                                                            <Insets left="10.0" right="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="41.0" prefWidth="529.0">
+                                                   <children>
+                                                      <Label prefHeight="33.0" prefWidth="200.0" styleClass="cusUpdtFields" text="Supplier Item code  :">
+                                                         <HBox.margin>
+                                                            <Insets right="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <Label fx:id="supItemCodeLbl" prefHeight="33.0" prefWidth="380.0" styleClass="cusUpdtInptFields" text="Label">
+                                                         <padding>
+                                                            <Insets left="10.0" right="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="41.0" prefWidth="529.0">
+                                                   <children>
+                                                      <Label prefHeight="33.0" prefWidth="200.0" styleClass="cusUpdtFields" text="Item Category :">
+                                                         <HBox.margin>
+                                                            <Insets right="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <Label fx:id="itemCatLbl" prefHeight="33.0" prefWidth="380.0" styleClass="cusUpdtInptFields" text="Label">
+                                                         <padding>
+                                                            <Insets left="10.0" right="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="41.0" prefWidth="529.0">
+                                                   <children>
+                                                      <Label prefHeight="33.0" prefWidth="200.0" styleClass="cusUpdtFields" text="Item Sub Category :">
+                                                         <HBox.margin>
+                                                            <Insets right="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <Label fx:id="itemSubCatLbl" prefHeight="33.0" prefWidth="380.0" styleClass="cusUpdtInptFields" text="Label">
+                                                         <padding>
+                                                            <Insets left="10.0" right="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="41.0" prefWidth="529.0">
+                                                   <children>
+                                                      <Label prefHeight="33.0" prefWidth="200.0" styleClass="cusUpdtFields" text="Item Cost price :">
+                                                         <HBox.margin>
+                                                            <Insets right="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <Label fx:id="itemCostLbl" prefHeight="33.0" prefWidth="380.0" styleClass="cusUpdtInptFields" text="Label">
+                                                         <padding>
+                                                            <Insets left="10.0" right="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="41.0" prefWidth="529.0">
+                                                   <children>
+                                                      <Label prefHeight="33.0" prefWidth="200.0" styleClass="cusUpdtFields" text="Item Sell price :">
+                                                         <HBox.margin>
+                                                            <Insets right="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <Label fx:id="itemSellLbl" prefHeight="33.0" prefWidth="380.0" styleClass="cusUpdtInptFields" text="Label">
+                                                         <padding>
+                                                            <Insets left="10.0" right="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="41.0" prefWidth="529.0">
+                                                   <children>
+                                                      <Label prefHeight="33.0" prefWidth="205.0" styleClass="cusUpdtFields" text="Item Whole Sell price :">
+                                                         <HBox.margin>
+                                                            <Insets right="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <Label fx:id="itemWholeSellLbl" prefHeight="33.0" prefWidth="380.0" styleClass="cusUpdtInptFields" text="Label">
+                                                         <padding>
+                                                            <Insets left="10.0" right="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="41.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label prefHeight="33.0" prefWidth="200.0" styleClass="cusUpdtFields" text="Item Stock count :">
+                                                         <HBox.margin>
+                                                            <Insets right="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <Label fx:id="itemStockLbl" prefHeight="33.0" prefWidth="382.0" styleClass="cusUpdtInptFields" text="Label">
+                                                         <padding>
+                                                            <Insets left="10.0" right="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="41.0" prefWidth="529.0">
+                                                   <children>
+                                                      <Label prefHeight="33.0" prefWidth="200.0" styleClass="cusUpdtFields" text="Item Bar code :">
+                                                         <HBox.margin>
+                                                            <Insets right="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <Label fx:id="itemBarCodeLbl" prefHeight="33.0" prefWidth="380.0" styleClass="cusUpdtInptFields" text="Label">
+                                                         <padding>
+                                                            <Insets left="10.0" right="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="41.0" prefWidth="529.0">
+                                                   <children>
+                                                      <Label prefHeight="33.0" prefWidth="200.0" styleClass="cusUpdtFields" text="Item Sold Location :">
+                                                         <HBox.margin>
+                                                            <Insets right="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <Label fx:id="itemSoldLocLbl" prefHeight="33.0" prefWidth="380.0" styleClass="cusUpdtInptFields" text="Label">
+                                                         <padding>
+                                                            <Insets left="10.0" right="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="41.0" prefWidth="529.0">
+                                                   <children>
+                                                      <Label prefHeight="33.0" prefWidth="200.0" styleClass="cusUpdtFields" text="Item Supplier ID :">
+                                                         <HBox.margin>
+                                                            <Insets right="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <Label fx:id="itemSupIdLbl" prefHeight="33.0" prefWidth="380.0" styleClass="cusUpdtInptFields" text="Label">
+                                                         <padding>
+                                                            <Insets left="10.0" right="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="41.0" prefWidth="529.0">
+                                                   <children>
+                                                      <Label prefHeight="33.0" prefWidth="200.0" styleClass="cusUpdtFields" text="Item Brnad :">
+                                                         <HBox.margin>
+                                                            <Insets right="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <Label fx:id="itemBrandLbl" prefHeight="33.0" prefWidth="380.0" styleClass="cusUpdtInptFields" text="Label">
+                                                         <padding>
+                                                            <Insets left="10.0" right="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="41.0" prefWidth="529.0">
+                                                   <children>
+                                                      <Label prefHeight="33.0" prefWidth="200.0" styleClass="cusUpdtFields" text="Item Size :">
+                                                         <HBox.margin>
+                                                            <Insets right="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <Label fx:id="itemSizeLbl" prefHeight="33.0" prefWidth="380.0" styleClass="cusUpdtInptFields" text="Label">
+                                                         <padding>
+                                                            <Insets left="10.0" right="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="41.0" prefWidth="529.0">
+                                                   <children>
+                                                      <Label prefHeight="33.0" prefWidth="200.0" styleClass="cusUpdtFields" text="Item color :">
+                                                         <HBox.margin>
+                                                            <Insets right="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <Label fx:id="itemColorLbl" prefHeight="33.0" prefWidth="380.0" styleClass="cusUpdtInptFields" text="Label">
+                                                         <padding>
+                                                            <Insets left="10.0" right="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="41.0" prefWidth="529.0">
+                                                   <children>
+                                                      <Label prefHeight="33.0" prefWidth="200.0" styleClass="cusUpdtFields" text="Item Created date :">
+                                                         <HBox.margin>
+                                                            <Insets right="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <Label fx:id="itemCreateDateLbl" prefHeight="33.0" prefWidth="380.0" styleClass="cusUpdtInptFields" text="Label">
+                                                         <padding>
+                                                            <Insets left="10.0" right="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="41.0" prefWidth="529.0">
+                                                   <children>
+                                                      <Label prefHeight="33.0" prefWidth="200.0" styleClass="cusUpdtFields" text="Item Updated date :">
+                                                         <HBox.margin>
+                                                            <Insets right="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <Label fx:id="itemUpdtDateLbl" prefHeight="33.0" prefWidth="380.0" styleClass="cusUpdtInptFields" text="Label">
+                                                         <padding>
+                                                            <Insets left="10.0" right="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </content>
+                                    </ScrollPane>
+                                    <Button mnemonicParsing="false" onMouseClicked="#rmveBtnClk" prefHeight="45.0" prefWidth="528.0" styleClass="pinkBtn" text="Remove Item">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="itemBox" />
+                                    <String fx:value="anchorPad" />
+                                 </styleClass>
+                              </VBox>
+                              <VBox prefHeight="689.0" prefWidth="578.0">
+                                 <styleClass>
+                                    <String fx:value="itemBox" />
+                                    <String fx:value="anchorPad" />
+                                 </styleClass>
+                                 <children>
+                                    <ScrollPane prefHeight="629.0" prefWidth="536.0">
+                                       <content>
+                                          <VBox prefHeight="838.0" prefWidth="511.0">
+                                             <children>
+                                                <VBox prefHeight="105.0" prefWidth="526.0">
+                                                   <children>
+                                                      <Label styleClass="cusUpdtFields" text="Item New name ">
+                                                         <padding>
+                                                            <Insets bottom="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <TextField fx:id="itemNname" prefHeight="45.0" prefWidth="528.0" promptText="Enter new name" styleClass="lightInput">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                         <opaqueInsets>
+                                                            <Insets />
+                                                         </opaqueInsets>
+                                                         <VBox.margin>
+                                                            <Insets />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                      <VBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="528.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onMouseClicked="#onClickUpdtItemName" prefHeight="25.0" prefWidth="86.0" styleClass="pinkBtn" text="Update" />
+                                                         </children>
+                                                         <padding>
+                                                            <Insets right="10.0" />
+                                                         </padding>
+                                                         <opaqueInsets>
+                                                            <Insets />
+                                                         </opaqueInsets>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </VBox>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="130.0" prefWidth="528.0">
+                                                   <children>
+                                                      <Label styleClass="cusUpdtFields" text="Item New Barcode">
+                                                         <padding>
+                                                            <Insets bottom="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <TextField fx:id="itemNbarcode" prefHeight="45.0" prefWidth="528.0" promptText="Enter new address" styleClass="lightInput">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </TextField>
+                                                      <VBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="528.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onMouseClicked="#onClickUpdtItemBarCode" prefHeight="25.0" prefWidth="86.0" styleClass="pinkBtn" text="Update" />
+                                                         </children>
+                                                         <padding>
+                                                            <Insets right="10.0" />
+                                                         </padding>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </VBox>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="130.0" prefWidth="528.0">
+                                                   <children>
+                                                      <Label styleClass="cusUpdtFields" text="Item New supplier code">
+                                                         <padding>
+                                                            <Insets bottom="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <TextField fx:id="itemNsupItemCode" prefHeight="45.0" prefWidth="528.0" promptText="Enter new number" styleClass="lightInput">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </TextField>
+                                                      <VBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="528.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onMouseClicked="#onClickUpdtSupItemCode" prefHeight="25.0" prefWidth="86.0" styleClass="pinkBtn" text="Update" />
+                                                         </children>
+                                                         <padding>
+                                                            <Insets right="10.0" />
+                                                         </padding>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </VBox>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="130.0" prefWidth="528.0">
+                                                   <children>
+                                                      <Label styleClass="cusUpdtFields" text="Item New Category">
+                                                         <padding>
+                                                            <Insets bottom="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <TextField fx:id="itemNcat" prefHeight="45.0" prefWidth="528.0" promptText="Enter new email" styleClass="lightInput">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </TextField>
+                                                      <VBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="528.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onMouseClicked="#onClickUpdtItemCat" prefHeight="25.0" prefWidth="86.0" styleClass="pinkBtn" text="Update" />
+                                                         </children>
+                                                         <padding>
+                                                            <Insets right="10.0" />
+                                                         </padding>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </VBox>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="130.0" prefWidth="528.0">
+                                                   <children>
+                                                      <Label styleClass="cusUpdtFields" text="Item New Sub Category">
+                                                         <padding>
+                                                            <Insets bottom="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <TextField fx:id="itemNsubCat" prefHeight="45.0" prefWidth="528.0" promptText="Enter new email" styleClass="lightInput">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </TextField>
+                                                      <VBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="528.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onMouseClicked="#onClickUpdtItemSubCat" prefHeight="25.0" prefWidth="86.0" styleClass="pinkBtn" text="Update" />
+                                                         </children>
+                                                         <padding>
+                                                            <Insets right="10.0" />
+                                                         </padding>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </VBox>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="130.0" prefWidth="528.0">
+                                                   <children>
+                                                      <Label styleClass="cusUpdtFields" text="Item New Warrenty (Months)">
+                                                         <padding>
+                                                            <Insets bottom="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <TextField fx:id="itemNwarrenty" prefHeight="45.0" prefWidth="528.0" promptText="Enter new email" styleClass="lightInput">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </TextField>
+                                                      <VBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="528.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onMouseClicked="#onClickUpdtItemWarrenty" prefHeight="25.0" prefWidth="86.0" styleClass="pinkBtn" text="Update" />
+                                                         </children>
+                                                         <padding>
+                                                            <Insets right="10.0" />
+                                                         </padding>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </VBox>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="130.0" prefWidth="528.0">
+                                                   <children>
+                                                      <Label styleClass="cusUpdtFields" text="Item New Cost Price :">
+                                                         <padding>
+                                                            <Insets bottom="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <TextField fx:id="itemNcost" prefHeight="45.0" prefWidth="528.0" promptText="Enter new email" styleClass="lightInput">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </TextField>
+                                                      <VBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="528.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onMouseClicked="#onClickUpdtItemCost" prefHeight="25.0" prefWidth="86.0" styleClass="pinkBtn" text="Update" />
+                                                         </children>
+                                                         <padding>
+                                                            <Insets right="10.0" />
+                                                         </padding>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </VBox>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="130.0" prefWidth="528.0">
+                                                   <children>
+                                                      <Label styleClass="cusUpdtFields" text="Item New Sell Price :">
+                                                         <padding>
+                                                            <Insets bottom="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <TextField fx:id="itemNsell" prefHeight="45.0" prefWidth="528.0" promptText="Enter new email" styleClass="lightInput">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </TextField>
+                                                      <VBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="528.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onMouseClicked="#onClickUpdtItemSell" prefHeight="25.0" prefWidth="86.0" styleClass="pinkBtn" text="Update" />
+                                                         </children>
+                                                         <padding>
+                                                            <Insets right="10.0" />
+                                                         </padding>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </VBox>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="130.0" prefWidth="528.0">
+                                                   <children>
+                                                      <Label styleClass="cusUpdtFields" text="Item New Wholesale Price :">
+                                                         <padding>
+                                                            <Insets bottom="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <TextField fx:id="itemNwholeSell" prefHeight="45.0" prefWidth="528.0" promptText="Enter new email" styleClass="lightInput">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </TextField>
+                                                      <VBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="528.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onMouseClicked="#onClickUpdtItemWholeSell" prefHeight="25.0" prefWidth="86.0" styleClass="pinkBtn" text="Update" />
+                                                         </children>
+                                                         <padding>
+                                                            <Insets right="10.0" />
+                                                         </padding>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </VBox>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="130.0" prefWidth="528.0">
+                                                   <children>
+                                                      <Label styleClass="cusUpdtFields" text="Item New Stock count">
+                                                         <padding>
+                                                            <Insets bottom="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <TextField fx:id="itemNstock" prefHeight="45.0" prefWidth="528.0" promptText="Enter new email" styleClass="lightInput">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </TextField>
+                                                      <VBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="528.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onMouseClicked="#onClickUpdtItemStock" prefHeight="25.0" prefWidth="86.0" styleClass="pinkBtn" text="Update" />
+                                                         </children>
+                                                         <padding>
+                                                            <Insets right="10.0" />
+                                                         </padding>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </VBox>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="130.0" prefWidth="528.0">
+                                                   <children>
+                                                      <Label styleClass="cusUpdtFields" text="Item New Supplier ID">
+                                                         <padding>
+                                                            <Insets bottom="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <TextField fx:id="itemNsupId" prefHeight="45.0" prefWidth="528.0" promptText="Enter new email" styleClass="lightInput">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </TextField>
+                                                      <VBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="528.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onMouseClicked="#onClickUpdtItemSupId" prefHeight="25.0" prefWidth="86.0" styleClass="pinkBtn" text="Update" />
+                                                         </children>
+                                                         <padding>
+                                                            <Insets right="10.0" />
+                                                         </padding>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </VBox>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="130.0" prefWidth="528.0">
+                                                   <children>
+                                                      <Label styleClass="cusUpdtFields" text="Item New Brand">
+                                                         <padding>
+                                                            <Insets bottom="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <TextField fx:id="itemNbrand" prefHeight="45.0" prefWidth="528.0" promptText="Enter new email" styleClass="lightInput">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </TextField>
+                                                      <VBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="528.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onMouseClicked="#onClickUpdtItemBrand" prefHeight="25.0" prefWidth="86.0" styleClass="pinkBtn" text="Update" />
+                                                         </children>
+                                                         <padding>
+                                                            <Insets right="10.0" />
+                                                         </padding>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </VBox>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="130.0" prefWidth="528.0">
+                                                   <children>
+                                                      <Label styleClass="cusUpdtFields" text="Item New Size">
+                                                         <padding>
+                                                            <Insets bottom="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <TextField fx:id="itemNsize" prefHeight="45.0" prefWidth="528.0" promptText="Enter new email" styleClass="lightInput">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </TextField>
+                                                      <VBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="528.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onMouseClicked="#onClickUpdtItemSize" prefHeight="25.0" prefWidth="86.0" styleClass="pinkBtn" text="Update" />
+                                                         </children>
+                                                         <padding>
+                                                            <Insets right="10.0" />
+                                                         </padding>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </VBox>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="130.0" prefWidth="528.0">
+                                                   <children>
+                                                      <Label styleClass="cusUpdtFields" text="Item New Color">
+                                                         <padding>
+                                                            <Insets bottom="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <TextField fx:id="itemNcolor" prefHeight="45.0" prefWidth="528.0" promptText="Enter new email" styleClass="lightInput">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </TextField>
+                                                      <VBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="528.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onMouseClicked="#onClickUpdtItemColor" prefHeight="25.0" prefWidth="86.0" styleClass="pinkBtn" text="Update" />
+                                                         </children>
+                                                         <padding>
+                                                            <Insets right="10.0" />
+                                                         </padding>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </VBox>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="130.0" prefWidth="528.0">
+                                                   <children>
+                                                      <Label prefHeight="16.0" prefWidth="123.0" styleClass="cusUpdtFields" text="Item New Image">
+                                                         <padding>
+                                                            <Insets bottom="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <VBox alignment="CENTER" prefHeight="46.0" prefWidth="528.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onMouseClicked="#onClickSelectNewImage" prefHeight="39.0" prefWidth="391.0" styleClass="pinkBlackBtn" text="Update Image" />
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                      </VBox>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </VBox>
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </VBox>
+                           </children>
                         </HBox>
                      </children>
                   </VBox>

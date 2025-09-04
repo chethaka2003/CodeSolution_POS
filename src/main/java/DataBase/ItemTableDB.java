@@ -83,5 +83,55 @@ public class ItemTableDB {
 
     }
 
+    //Getting the item
+    public static Item getItem(String inputID){
+        String sql = "SELECT * FROM item WHERE item_code = ? OR item_barcode = ? ;";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+
+            preparedStatement.setString(1,inputID);
+            preparedStatement.setString(2,inputID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()){
+                Item item = new Item(resultSet.getString("item_code"), resultSet.getString("item_name"), resultSet.getString("supplierItem_code"), resultSet.getString("item_category"), resultSet.getString("item_SubCategory"), resultSet.getInt("item_warrentyMonths"), resultSet.getInt("item_CostPrice"),resultSet.getInt("item_SellPrice"), resultSet.getInt("item_WholeSellPrice"), resultSet.getInt("item_stock_count"),resultSet.getString("itemSupplier_id"), resultSet.getString("item_barcode"), resultSet.getString("itemBrand"), resultSet.getString("itemSize"),resultSet.getString("itemColor"),resultSet.getString("item_image"));
+                return item;
+            }
+            else
+                return null;
+
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String getItemData(String columnName,String inputID){
+        String sql = "SELECT "+columnName+" FROM item WHERE item_code = ? OR item_barcode = ? ;";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+
+            preparedStatement.setString(1,inputID);
+            preparedStatement.setString(2,inputID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (columnName.endsWith("Date")){
+                if (resultSet.next()) {
+                    String value = String.valueOf(resultSet.getDate(columnName));
+                    return value;
+                }else return null;
+            }
+            else {
+                if (resultSet.next()) {
+                    String value = resultSet.getString(columnName);
+                    return value;
+                }else return null;
+            }
+
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }
