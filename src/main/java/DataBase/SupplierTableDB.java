@@ -158,6 +158,24 @@ public class SupplierTableDB {
         }
     }
 
+    public static Boolean isSupAvailable(String supCode){
+        String sql = "SELECT * FROM `supplier` WHERE supplier_id = ?;";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setString(1,supCode);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()){
+                return true;
+            }
+            else return false;
+        }
+        catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
 
 
 }

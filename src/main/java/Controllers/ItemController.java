@@ -51,6 +51,9 @@ public class ItemController implements Initializable {
     public  String out_supId;
     public String out_barCode;
 
+    //Searched item code
+    public String out_searchItemCode;
+
     //Default image path if image path is not available or not set
     public String defaultImagePath = "src/main/resources/Inputs/noPreviewDefault.jpeg";
 
@@ -234,12 +237,28 @@ public class ItemController implements Initializable {
         checkLength(itemSize,15,"Item size");
         checkLength(itemColor,15,"Item color");
 
+        checkLength(itemNname,45,"Item new Name");
+        checkLength(itemNcat,15,"Item new Category");
+        checkLength(itemNsubCat,15,"Item new Sub category");
+        checkLength(itemNbrand,15,"Item New brand");
+        checkLength(itemNsize,15,"Item new size");
+        checkLength(itemNcolor,15,"Item new color");
+
+
         //Check the data type
         checkType(itemWarrenty,"\\d*","Item warranty");
         checkType(itemCostPrice,"\\d*","Item cost price");
         checkType(itemSellPrice,"\\d*","Item selling price");
         checkType(itemWholeSellPrice,"\\d*","Item whole sale price");
         checkType(itemStock,"\\d*","Item Stock count");
+
+
+        checkType(itemNwarrenty,"\\d*","Item New warranty in months");
+        checkType(itemNcost,"\\d*","Item New cost Price");
+        checkType(itemNsell,"\\d*","Item New selling price");
+        checkType(itemNwholeSell,"\\d*","Item New Whole sell price");
+        checkType(itemNstock,"\\d*","Item New stock count");
+
 
 
 
@@ -295,7 +314,18 @@ public class ItemController implements Initializable {
 
     @FXML
     void onClickSelectNewImage(MouseEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image files","*jpg"),new FileChooser.ExtensionFilter("PNG image","*.png"));
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+        if (selectedFile.exists()) {
+            Image image = new Image(selectedFile.toURI().toString());
+            uiService.askConfirmation("Image change confirmation",null,"Are you sure you want to change image",()->ItemTableDB.updateItemStringData("item_image",selectedFile.toString(),out_itemCode));
+            itemImage.setImage(image);
+            System.out.println("Loaded: " + selectedFile.getAbsolutePath());
 
+        } else {
+            uiService.giveErrorAlert("Incorrect File",null,"Please enter correct file path");
+        }
     }
 
     //Getting
@@ -305,7 +335,9 @@ public class ItemController implements Initializable {
             uiService.giveErrorAlert("Empty value",null,"Please Enter valid Barcode ore Item ID");
         }
         else{
+            updateValueHbox.setVisible(true);
             String itemCode = srchItemId.getText();
+            out_searchItemCode = itemCode;
             Item item = ItemTableDB.getItem(itemCode);
             if (item == null){
                 uiService.giveErrorAlert("Incorrect ItemCode or BarCode",null,"Please recheck the  item code or barcode you have entered");
@@ -532,72 +564,115 @@ public class ItemController implements Initializable {
 
     @FXML
     void onClickUpdtItemBarCode(MouseEvent event) {
-
+        if (itemNbarcode.getText().isBlank() || itemNbarcode.getText().isEmpty()){
+            uiService.giveErrorAlert("Empty value",null,"Please enter the values you want to update");
+        }
+        else{
+            String itemNewBarcode = itemNbarcode.getText();
+            uiService.askConfirmation("Confirmation",null,"Are you sure you want to update this value",() -> ItemTableDB.updateItemStringData("item_barcode",itemNewBarcode,out_searchItemCode));
+        }
     }
 
     @FXML
     void onClickUpdtItemBrand(MouseEvent event) {
-
+        if (itemNbrand.getText().isBlank() || itemNbrand.getText().isEmpty()){
+            uiService.giveErrorAlert("Empty value",null,"Please enter the values you want to update");
+        }
+        else{
+            String itemUpdateValue = itemNbrand.getText();
+            uiService.askConfirmation("Confirmation",null,"Are you sure you want to update this value",() -> ItemTableDB.updateItemStringData("itemBrand",itemUpdateValue,out_searchItemCode));
+        }
     }
 
     @FXML
     void onClickUpdtItemCat(MouseEvent event) {
-
+        updateStringValue(itemNcat,"item_category");
     }
 
     @FXML
     void onClickUpdtItemColor(MouseEvent event) {
-
+        updateStringValue(itemNcolor,"itemColor");
     }
 
     @FXML
     void onClickUpdtItemCost(MouseEvent event) {
-
+        updateIntValue(itemNcost,"item_CostPrice");
     }
 
     @FXML
     void onClickUpdtItemName(MouseEvent event) {
-
+        updateStringValue(itemNname,"item_name");
     }
 
     @FXML
     void onClickUpdtItemSell(MouseEvent event) {
-
+        updateIntValue(itemNsell,"item_SellPrice");
     }
 
     @FXML
     void onClickUpdtItemSize(MouseEvent event) {
-
+        updateStringValue(itemNsize,"itemSize");
     }
 
     @FXML
     void onClickUpdtItemStock(MouseEvent event) {
-
+        updateIntValue(itemNstock,"item_stock_count");
     }
 
     @FXML
     void onClickUpdtItemSubCat(MouseEvent event) {
-
+        updateStringValue(itemNsubCat,"item_SubCategory");
     }
 
     @FXML
     void onClickUpdtItemSupId(MouseEvent event) {
+        if (itemNsupId.getText().isBlank() || itemNsupId.getText().isEmpty()){
+            uiService.giveErrorAlert("Empty value",null,"Please enter the values you want to update");
+        }
+        else{
+            String itemUpdateValue = itemNsupId.getText();
+            if (SupplierTableDB.isSupAvailable(itemUpdateValue)){
+                uiService.askConfirmation("Confirmation",null,"Are you sure you want to update this value",() -> ItemTableDB.updateItemStringData("itemSupplier_id",itemUpdateValue,out_searchItemCode));
+            }else {
+                uiService.giveErrorAlert("Supplier not avaialable",null,"Supplier number you entered is not available in the database");
+            }
 
+        }
     }
 
     @FXML
     void onClickUpdtItemWarrenty(MouseEvent event) {
-
+        updateIntValue(itemNwarrenty,"item_warrentyMonths");
     }
 
     @FXML
     void onClickUpdtItemWholeSell(MouseEvent event) {
-
+        updateIntValue(itemNwholeSell,"item_WholeSellPrice");
     }
 
     @FXML
     void onClickUpdtSupItemCode(MouseEvent event) {
+        updateStringValue(itemNsupItemCode,"supplierItem_code");
+    }
 
+    public void updateStringValue(TextField textField,String columnName){
+        if (textField.getText().isBlank() || textField.getText().isEmpty()){
+            uiService.giveErrorAlert("Empty value",null,"Please enter the values you want to update");
+        }
+        else{
+            String itemUpdateValue = textField.getText();
+            uiService.askConfirmation("Confirmation",null,"Are you sure you want to update this value",() -> ItemTableDB.updateItemStringData(columnName,itemUpdateValue,out_searchItemCode));
+        }
+    }
+
+    public void updateIntValue(TextField textField,String columnName){
+        if (textField.getText().isBlank() || textField.getText().isEmpty()){
+            uiService.giveErrorAlert("Empty value",null,"Please enter the values you want to update");
+        }
+        else{
+            int itemUpdateValue = Integer.parseInt(textField.getText());
+            uiService.askConfirmation("Confirmation",null,"Are you sure you want to update this value",() -> ItemTableDB.updateItemIntData(columnName,itemUpdateValue,out_searchItemCode));
+        }
     }
 
 

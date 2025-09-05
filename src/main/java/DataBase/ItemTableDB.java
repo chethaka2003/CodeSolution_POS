@@ -133,5 +133,50 @@ public class ItemTableDB {
         }
     }
 
+    //Update the data which are in customer table
+    public static void updateItemStringData(String updateColName, String updateValue ,String itemCode){
+
+        String sql = "UPDATE item SET "+updateColName+" = ? WHERE item_code = ? OR item_barcode = ?;";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1,updateValue);
+            preparedStatement.setString(2,itemCode);
+            preparedStatement.setString(3,itemCode);
+
+            int rowsUpdated = preparedStatement.executeUpdate();
+            if (rowsUpdated>0){
+                System.out.println("Item data values Updated");
+            }
+            else {
+                System.out.println("No value got updated");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void updateItemIntData(String updateColName, int updateValue ,String itemCode){
+
+        String sql = "UPDATE item SET "+updateColName+" = ? WHERE item_code = ? OR item_barcode = ?;";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1,updateValue);
+            preparedStatement.setString(2,itemCode);
+            preparedStatement.setString(3,itemCode);
+
+            int rowsUpdated = preparedStatement.executeUpdate();
+            if (rowsUpdated>0){
+                System.out.println("Item data values Updated");
+            }
+            else {
+                System.out.println("No value got updated");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }
