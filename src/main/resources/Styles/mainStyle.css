@@ -251,3 +251,33 @@
     -fx-border-color: black;  /* optional border */
     -fx-padding: 5;
 }
+
+/* Style the main ChoiceBox */
+.choice-box {
+    -fx-background-color: linear-gradient(to right, #FAC1D9, #fad0c4);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-background-radius: 8;
+    -fx-padding: 5 10;
+}
+
+/* Style the dropdown popup */
+.choice-box .context-menu {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 8;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 8;
+}
+
+/* Style each item inside dropdown */
+.choice-box .menu-item {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+/* Hover effect on dropdown items */
+.choice-box .menu-item:hover {
+    -fx-background-color: #FAC1D9;
+    -fx-text-fill: white;
+}

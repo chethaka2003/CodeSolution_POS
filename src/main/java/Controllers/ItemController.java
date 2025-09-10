@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -28,6 +29,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ItemController implements Initializable {
@@ -207,15 +209,59 @@ public class ItemController implements Initializable {
     @FXML
     private HBox updateValueHbox;
 
+    @FXML
+    private ChoiceBox<String> findItemBrand;
+
+    @FXML
+    private ChoiceBox<String> findItemCat;
+
+    @FXML
+    private ChoiceBox<String> findItemColor;
+
+    @FXML
+    private TextField findItemName;
+
+    @FXML
+    private ChoiceBox<String> findItemSize;
+
+    @FXML
+    private ChoiceBox<String> findItemSubCat;
+
 
     public void initialize(URL url , ResourceBundle rb) {
 
         //Getting previous entered values
         ArrayList<String> suggestedBrands = ItemTableDB.getSuggestList("itemBrand");
+        ArrayList<String> suggestedCategories = ItemTableDB.getSuggestList("item_category");
+        ArrayList<String> suggestedSubCategories = ItemTableDB.getSuggestList("item_SubCategory");
+        ArrayList<String> suggestedColors = ItemTableDB.getSuggestList("itemColor");
+        ArrayList<String> suggestedSize = ItemTableDB.getSuggestList("itemSize");
 
 
         //Adding suggested list into textField
         TextFields.bindAutoCompletion(itemBrand, suggestedBrands);
+
+        //Adding choiceBox values into ChoiceBox
+        findItemBrand.getItems().addAll(suggestedBrands);
+        findItemBrand.getItems().add("Any");
+        findItemBrand.setValue("Any");
+
+        findItemSize.getItems().addAll(suggestedSize);
+        findItemSize.getItems().add("Any");
+        findItemSize.setValue("Any");
+
+        findItemColor.getItems().addAll(suggestedColors);
+        findItemColor.getItems().add("Any");
+        findItemColor.setValue("Any");
+
+        findItemCat.getItems().addAll(suggestedCategories);
+        findItemCat.getItems().add("Any");
+        findItemCat.setValue("Any");
+
+        findItemSubCat.getItems().addAll(suggestedSubCategories);
+        findItemSubCat.getItems().add("Any");
+        findItemSubCat.setValue("Any");
+
 
         //Adding validations
         itemName.textProperty().addListener(new ChangeListener<String>() {
@@ -275,6 +321,28 @@ public class ItemController implements Initializable {
     @FXML
     void onClickPrintBarcode(MouseEvent event) {
 
+
+    }
+
+    @FXML
+    void searchItemClick(MouseEvent event) {
+
+        List<Item> items;
+
+        String itemBrand = findItemBrand.getValue();
+        String itemName = findItemName.getText();
+        String itemSize = findItemSize.getValue();
+        String itemColor = findItemColor.getValue();
+        String itemCat = findItemCat.getValue();
+        String itemSubCat = findItemSubCat.getValue();
+
+        items = ItemTableDB.searchItem(itemName,itemCat,itemSubCat,itemColor,itemSize,itemBrand);
+        if (items.isEmpty()){
+            System.out.println("No values found");
+        }
+        for (Item item :items){
+            System.out.println(item.getItemName());
+        }
 
     }
 
