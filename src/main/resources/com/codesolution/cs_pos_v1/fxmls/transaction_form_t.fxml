@@ -5,64 +5,115 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="649.0" prefWidth="1000.0" style="-fx-background-color: #111315;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TransactionController">
+<AnchorPane prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #111315;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TransactionController">
 
     <VBox layoutX="-17.0" prefHeight="649.0" prefWidth="1017.0" spacing="20" style="-fx-padding: 25;" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0.0">
-
-        <!-- Header -->
-        <HBox alignment="CENTER">
-            <Label style="-fx-font-size: 26px; -fx-text-fill: #FFFFFF; -fx-font-weight: bold;" text="Transaction" />
-        </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="657.0">
+         <children>
+            <ImageView fitHeight="43.0" fitWidth="39.0" onMouseClicked="#b2Dboard" pickOnBounds="true" preserveRatio="true" styleClass="backIcon">
+               <image>
+                  <Image url="@../../../../Icons/back.png" />
+               </image>
+            </ImageView>
+            <Label styleClass="controllerName" text="Transaction" textFill="WHITE">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+         </children>
+      </HBox>
 
         <!-- Main Layout Split -->
         <HBox spacing="20" VBox.vgrow="ALWAYS">
 
             <!-- LEFT SIDE: Item Table -->
             <VBox spacing="15" style="-fx-background-color: #111315; -fx-background-radius: 12;" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-            <HBox maxHeight="462.0" maxWidth="628.0" minWidth="628.0" style="-fx-background-color: #292C2D; -fx-background-radius: 12;">
+            <HBox alignment="CENTER_LEFT" maxHeight="462.0" maxWidth="778.0" minWidth="628.0" prefHeight="52.0" prefWidth="778.0" style="-fx-background-color: #292C2D; -fx-background-radius: 12;">
                <children>
-                  <Label prefHeight="42.0" prefWidth="91.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Item Code">
+                  <Label prefHeight="17.0" prefWidth="174.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Item Code">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="10.0" prefWidth="338.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Item Name">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="30.0" prefWidth="124.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Item Price">
                      <padding>
                         <Insets left="12.0" />
-                     </padding>
-                  </Label>
-                  <Label prefHeight="17.0" prefWidth="338.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Item Name">
-                     <padding>
-                        <Insets left="12.0" top="5.0" />
-                     </padding>
-                  </Label>
-                  <Label prefHeight="17.0" prefWidth="114.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Item Price">
-                     <padding>
-                        <Insets left="12.0" top="5.0" />
                      </padding>
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
                   </Label>
-                  <Label prefHeight="17.0" prefWidth="42.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Qty">
+                  <Label prefHeight="30.0" prefWidth="62.0" style="-fx-text-fill: #EAEAEA; -fx-font-weight: Bold;" text="Qty">
                      <padding>
-                        <Insets left="12.0" top="5.0" />
+                        <Insets left="12.0" />
                      </padding>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
                   </Label>
                </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
                <padding>
-                  <Insets bottom="5.0" top="5.0" />
+                  <Insets left="20.0" />
                </padding>
             </HBox>
             <HBox style="-fx-background-radius: 12;">
                <children>
-                  <ScrollPane fx:id="itemScrollHolder" prefHeight="462.0" prefWidth="628.0" style="-fx-background-color: #292C2D; -fx-background-radius: 12;" />
+                  <ScrollPane fx:id="itemScrollHolder" prefHeight="462.0" prefWidth="777.0" style="-fx-background-color: #292C2D; -fx-background-radius: 12;">
+                     <content>
+                        <VBox fx:id="container">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="752.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="184.0" text="LAP 0102568" textFill="WHITE">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label prefHeight="17.0" prefWidth="367.0" text="LAP 0102568" textFill="WHITE" />
+                                    <Label prefHeight="17.0" prefWidth="118.0" text="LAP 0102568" textFill="WHITE" />
+                                    <Spinner prefHeight="38.0" prefWidth="58.0" styleClass="custom-spinner" />
+                                    <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                                       <HBox.margin>
+                                          <Insets left="30.0" />
+                                       </HBox.margin>
+                                       <image>
+                                          <Image url="@../../../../Icons/remove.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </content></ScrollPane>
                </children>
             </HBox>
             <HBox>
                <children>
-                  <TextField fx:id="txtNetAmount1" editable="false" maxWidth="Infinity" prefHeight="27.0" prefWidth="341.0" promptText="Item Code" style="-fx-background-color: #1C1C1C; -fx-text-fill: #FFFFFF; -fx-background-radius: 12; -fx-border-color: #404040; -fx-border-radius: 12;" />
-                  <Button fx:id="btnAddItem" maxWidth="Infinity" onAction="#onDone" prefHeight="25.0" prefWidth="216.0" style="-fx-background-color: #FAC1D9; -fx-text-fill: #111315; -fx-background-radius: 12;" text="Add">
+                  <TextField fx:id="itemCode" editable="false" maxWidth="Infinity" prefHeight="35.0" prefWidth="435.0" promptText="Item Code or Barcode" style="-fx-background-color: #1C1C1C; -fx-text-fill: #FFFFFF; -fx-background-radius: 12; -fx-border-color: #404040; -fx-border-radius: 12;" />
+                  <Button maxWidth="Infinity" onAction="#onAddItem" prefHeight="34.0" prefWidth="216.0" style="-fx-background-color: #FAC1D9; -fx-text-fill: #111315; -fx-background-radius: 12;" text="Add">
                      <HBox.margin>
                         <Insets left="70.0" />
                      </HBox.margin>

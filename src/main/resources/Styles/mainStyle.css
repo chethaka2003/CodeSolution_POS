@@ -281,3 +281,62 @@
     -fx-background-color: #FAC1D9;
     -fx-text-fill: white;
 }
+
+.itemAvailable {
+    fx-background-color: #28a745;   /* Green background */
+    -fx-text-fill: white;            /* White text */
+    -fx-font-weight: bold;           /* Bold text */
+    -fx-padding: 3 8;                /* Some spacing */
+    -fx-background-radius: 5;        /* Rounded corners */
+
+    -fx-font-size: 15;
+    -fx-font-family: "poppins";
+
+}
+
+.itemNotAvailable {
+    fx-background-color: Red;   /* Green background */
+    -fx-text-fill: white;            /* White text */
+    -fx-font-weight: bold;           /* Bold text */
+    -fx-padding: 3 8;                /* Some spacing */
+    -fx-background-radius: 5;        /* Rounded corners */
+}
+
+.custom-spinner {
+    -fx-background-color: -light-bg-color;
+    -fx-background-radius: 12;
+    -fx-border-color: -pink-color;
+    -fx-border-radius: 12;
+    -fx-border-width: 2;
+    -fx-text-fill: -pink-color;
+    -fx-font-size: 10px;
+    -fx-padding: 2 5 2 5;
+}
+
+/* Style the text field inside spinner */
+.custom-spinner .text-field {
+    -fx-background-color: transparent;
+    -fx-text-fill: -pink-color;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-border-color: transparent;
+}
+
+/* Style the increment and decrement arrow buttons */
+.custom-spinner .increment-arrow-button,
+.custom-spinner .decrement-arrow-button {
+    -fx-background-color: -light-bg-color;
+    -fx-border-color: -pink-color;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+.custom-spinner .increment-arrow-button:hover,
+.custom-spinner .decrement-arrow-button:hover {
+    -fx-background-color: -pink-color;
+}
+
+.custom-spinner .increment-arrow,
+.custom-spinner .decrement-arrow {
+    -fx-background-color: -pink-color;
+}

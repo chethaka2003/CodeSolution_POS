@@ -5,14 +5,17 @@ import DataBase.SupplierTableDB;
 import Services.uiService;
 import animatefx.animation.Shake;
 import com.codesolution.cs_pos_v1.Item;
+import com.codesolution.cs_pos_v1.Supplier;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,6 +27,7 @@ import javafx.stage.Stage;
 import org.controlsfx.control.textfield.TextFields;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -61,6 +65,9 @@ public class ItemController implements Initializable {
 
     @FXML
     private VBox cusUpdtView;
+
+    @FXML
+    private VBox itemFindView;
 
     @FXML
     private VBox itemAddView;
@@ -198,6 +205,9 @@ public class ItemController implements Initializable {
     private TextField itemWholeSellPrice;
 
     @FXML
+    private ScrollPane suppliersList;
+
+    @FXML
     private TextField srchItemId;
 
     @FXML
@@ -313,10 +323,6 @@ public class ItemController implements Initializable {
     }
 
 
-    @FXML
-    void backItemAdd(MouseEvent event) {
-
-    }
 
     @FXML
     void onClickPrintBarcode(MouseEvent event) {
@@ -342,41 +348,16 @@ public class ItemController implements Initializable {
         }
         for (Item item :items){
             System.out.println(item.getItemName());
+            createItemRow(suppliersList,items);
         }
 
     }
 
-    @FXML
-    void onItemAddClicked(MouseEvent event) {
 
-        Node clickedNode = (Node) event.getSource();
-
-        Parent parent = clickedNode.getParent();
-
-        for (Node child : parent.getChildrenUnmodifiable()) {
-            child.getStyleClass().remove("setActive");
-        }
-
-        clickedNode.getStyleClass().add("setActive");
-
-        System.out.println("Clicked: " + clickedNode);
-
-        cusUpdtView.setVisible(false);
-        updateValueHbox.setVisible(false);
-        itemAddView.setVisible(true);
-
-
-
-    }
 
 
     @FXML
     void rmveBtnClk(MouseEvent event) {
-
-    }
-
-    @FXML
-    void backItemUpdt(MouseEvent event) {
 
     }
 
@@ -480,6 +461,8 @@ public class ItemController implements Initializable {
         return barcode;
     }
 
+
+
     //Checks the length of the textField
     public void checkLength(TextField textField, int length,String inputFieldName){
         textField.textProperty().addListener(new ChangeListener<String>() {
@@ -529,7 +512,8 @@ public class ItemController implements Initializable {
     }
 
     @FXML
-    void onItemUpdtClicked(MouseEvent event) {
+    void onItemAddClicked(MouseEvent event) {
+
         Node clickedNode = (Node) event.getSource();
 
         Parent parent = clickedNode.getParent();
@@ -542,9 +526,54 @@ public class ItemController implements Initializable {
 
         System.out.println("Clicked: " + clickedNode);
 
+        cusUpdtView.setVisible(false);
+        updateValueHbox.setVisible(false);
+        itemAddView.setVisible(true);
+        itemFindView.setVisible(false);
+
+
+
+    }
+
+    @FXML
+    void onItemFindClicked(MouseEvent event) {
+        Node clickedNode = (Node) event.getSource();
+
+        Parent parent = clickedNode.getParent();
+
+        for (Node child : parent.getChildrenUnmodifiable()) {
+            child.getStyleClass().remove("setActive");
+        }
+
+        clickedNode.getStyleClass().add("setActive");
+
+        System.out.println("Clicked: " + clickedNode);
+
+        cusUpdtView.setVisible(false);
+        updateValueHbox.setVisible(false);
+        itemAddView.setVisible(false);
+        itemFindView.setVisible(true);
+
+    }
+
+
+    @FXML
+    void onItemUpdtClicked(MouseEvent event) {
+        Node clickedNode = (Node) event.getSource();
+
+        Parent parent = clickedNode.getParent();
+
+        for (Node child : parent.getChildrenUnmodifiable()) {
+            child.getStyleClass().remove("setActive");
+        }
+
+        clickedNode.getStyleClass().add("setActive");
+
+        System.out.println("Clicked: " + clickedNode);
         cusUpdtView.setVisible(true);
         updateValueHbox.setVisible(false);
         itemAddView.setVisible(false);
+        itemFindView.setVisible(false);
     }
 
     @FXML
@@ -742,6 +771,86 @@ public class ItemController implements Initializable {
             uiService.askConfirmation("Confirmation",null,"Are you sure you want to update this value",() -> ItemTableDB.updateItemIntData(columnName,itemUpdateValue,out_searchItemCode));
         }
     }
+
+    //Creating rows
+    public void createItemRow(ScrollPane scrollPane,List<Item> items){
+
+        // Create a VBox to hold all the rows
+        VBox container = new VBox();
+        container.setSpacing(2); // space between rows
+        container.setAlignment(Pos.TOP_LEFT);
+
+        for(Item item : items){
+
+            //Creating each rows
+            HBox hBox = new HBox();
+            hBox.setPrefSize(1345.00,35.00);
+            hBox.setAlignment(Pos.CENTER_LEFT);
+
+            //Creating ItemID column
+            Label ID =new Label(item.getItemName());
+            ID.setPrefSize(160.00,23.00);
+            ID.getStyleClass().add("cusListRowData");
+
+            //Creating Item column
+            Label name =new Label(item.getItemCode());
+            name.setPrefSize(221.00,23.00);
+            name.getStyleClass().add("cusListRowData");
+
+            //Creating Item Price column
+            Label Price =new Label("Rs."+String.valueOf(item.getSellingPrice())+" /=");
+            Price.setPrefSize(193.00,23.00);
+            Price.getStyleClass().add("cusListRowData");
+
+            //Creating Item WholeSalePrice column
+            Label wholeSalePrice =new Label("Rs."+String.valueOf(item.getWholeSalePrice())+" /=");
+            wholeSalePrice.setPrefSize(191.00,23.00);
+            wholeSalePrice.getStyleClass().add("cusListRowData");
+
+            //Creating Item Color column
+            Label color =new Label(item.getColor());
+            color.setPrefSize(132.00,23.00);
+            color.getStyleClass().add("cusListRowData");
+
+            //Creating Item Size column
+            Label size =new Label(item.getSize());
+            size.setPrefSize(155.00,23.00);
+            size.getStyleClass().add("cusListRowData");
+
+            //Creating Item Brand column
+            Label brand =new Label(item.getBrand());
+            brand.setPrefSize(162.00,23.00);
+            brand.getStyleClass().add("cusListRowData");
+
+            //Creating Item Stock column
+            int stockCount = item.getStockCount();
+            Label stock;
+            if (stockCount>0){
+                stock =new Label("Available");
+                stock.setPrefSize(139.00,23.00);
+                stock.getStyleClass().add("itemAvailable");
+            } else {
+                stock =new Label("Out of Stock");
+                stock.setPrefSize(139.00,23.00);
+                stock.getStyleClass().add("itemNotAvailable");
+            }
+
+
+            //Adding the children into Hbox
+            hBox.getChildren().addAll(ID,name,Price,wholeSalePrice,color,size,brand,stock);
+
+            //adding into vbox
+            container.getChildren().add(hBox);
+        }
+        scrollPane.setContent(container);
+
+    }
+
+    @FXML
+    void b2Dboard(MouseEvent event) throws IOException {
+        uiService.switchScene(event,"/com/codesolution/cs_pos_v1/fxmls/dashboard.fxml","/Styles/mainStyle.css");
+    }
+
 
 
 }
