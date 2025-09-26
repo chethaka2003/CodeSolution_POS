@@ -8,15 +8,14 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class TransactionController {
-
-    @FXML
-    private Button btnAddItem;
 
     @FXML
     private Button btnDone;
@@ -28,47 +27,43 @@ public class TransactionController {
     private Button btnPrint;
 
     @FXML
+    private TextField cashInAmount;
+
+    @FXML
     private ComboBox<?> cmbPaymentMethod;
+
+    @FXML
+    private VBox container;
+
+    @FXML
+    private Label currentDate;
+
+    @FXML
+    private Label currentRP;
+
+    @FXML
+    private Label currentTime;
+
+    @FXML
+    private Label discount;
+
+    @FXML
+    private TextField itemCode;
 
     @FXML
     private ScrollPane itemScrollHolder;
 
     @FXML
+    private Label netAmount;
+
+    @FXML
+    private Label totalAmount;
+
+    @FXML
     private TextField txtCustomerId;
 
     @FXML
-    private TextField txtDiscount;
-
-    @FXML
-    private TextField txtNetAmount;
-
-    @FXML
-    private TextField txtNetAmount1;
-
-    @FXML
-    private TextField txtTotal;
-
-    @FXML
-    private TextField itemCode;
-
-
-    @FXML
-    private VBox container;
-
-
-
-    @FXML
-    void onDone(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onNextCustomer(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onPrintInvoice(ActionEvent event) {
+    void b2Dboard(MouseEvent event) {
 
     }
 
@@ -87,7 +82,22 @@ public class TransactionController {
                 hBox.setAlignment(Pos.CENTER_LEFT);
             }
         }
+    }
+
+    @FXML
+    void onNextCustomer(MouseEvent event) {
+
+    }
+
+    @FXML
+    void onPay(MouseEvent event) {
+
+    }
+
+    @FXML
+    void onPrintInvoice(MouseEvent event) {
 
     }
 
 }
+
