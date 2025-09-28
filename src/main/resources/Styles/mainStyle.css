@@ -10,19 +10,19 @@
 
 }
 
-.scroll-pane > .viewport {
-    -fx-background-color: transparent;
-    -fx-background-radius: 12;
-}
+/*.scroll-pane > .viewport {*/
+/*    -fx-background-color: transparent;*/
+/*    -fx-background-radius: 12;*/
+/*}*/
 
-.scroll-pane {
-    -fx-background-color: transparent;  /* remove outer background */
-}
+/*.scroll-pane {*/
+/*    -fx-background-color: transparent;  !* remove outer background *!*/
+/*}*/
 
-.scroll-pane .scroll-bar:vertical,
-.scroll-pane .scroll-bar:horizontal {
-    -fx-opacity: 0;
-}
+/*.scroll-pane .scroll-bar:vertical,*/
+/*.scroll-pane .scroll-bar:horizontal {*/
+/*    -fx-opacity: 0;*/
+/*}*/
 
 .itemName{
     -fx-padding: 10;

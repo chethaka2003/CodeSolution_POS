@@ -22,4 +22,9 @@ public class DashboardController {
     void onInventoryClicked(MouseEvent event) throws IOException {
         uiService.switchScene(event, "/com/codesolution/cs_pos_v1/fxmls/ItemManage.fxml","/Styles/mainStyle.css");
     }
+
+    @FXML
+    void onTransactionClicked(MouseEvent event) throws IOException {
+        uiService.switchScene(event, "/com/codesolution/cs_pos_v1/fxmls/transaction_form_t.fxml","/Styles/mainStyle.css");
+    }
 }
