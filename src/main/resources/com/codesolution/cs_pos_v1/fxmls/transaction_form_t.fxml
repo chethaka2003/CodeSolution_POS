@@ -232,9 +232,9 @@
             <children>
                <HBox alignment="BOTTOM_CENTER" prefHeight="123.0" prefWidth="429.0" style="-fx-spacing: 20;">
                   <children>
-                     <Button mnemonicParsing="false" onMouseClicked="#onClickAddDiscountBtn" prefHeight="105.0" prefWidth="116.0" styleClass="transButton" text="Add customer" />
+                     <Button mnemonicParsing="false" prefHeight="105.0" prefWidth="116.0" styleClass="transButton" text="Add customer" />
                      <Button mnemonicParsing="false" prefHeight="105.0" prefWidth="116.0" styleClass="transButton" text="Find Item" />
-                     <Button mnemonicParsing="false" prefHeight="105.0" prefWidth="116.0" styleClass="transButton" text="Add Discount" />
+                     <Button mnemonicParsing="false" onMouseClicked="#onClickAddDiscountBtn" prefHeight="105.0" prefWidth="116.0" styleClass="transButton" text="Add Discount" />
                   </children>
                </HBox>
                <HBox alignment="BOTTOM_CENTER" prefHeight="123.0" prefWidth="429.0" style="-fx-spacing: 20;">

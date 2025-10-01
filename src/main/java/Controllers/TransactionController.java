@@ -214,13 +214,13 @@ public class TransactionController implements Initializable {
     @FXML
     void onClickAddDiscountBtn(MouseEvent event) throws IOException {
         uiService.openPopupWindow(event, "/com/codesolution/cs_pos_v1/fxmls/Popups/AddDiscountPopup.fxml","/Styles/mainStyle.css");
-
+        
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        GlobetransactionController = this;
+        GlobetransactionController = this ;
 
     }
 }
