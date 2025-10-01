@@ -5,12 +5,14 @@ import Controllers.LoginController;
 import animatefx.animation.FadeIn;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Path;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -80,6 +82,35 @@ public class uiService {
 
         if (result.isPresent() && result.get() == ButtonType.YES){
             onYes.run();
+        }
+
+    }
+
+    //Popup window visible
+    public static void openPopupWindow(MouseEvent event, String fxmlPath, String cssPath) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(uiService.class.getResource(fxmlPath));
+        Stage stage = new Stage();
+        stage.setTitle("Enter Discount");
+        stage.centerOnScreen();
+        Scene scene = new Scene(fxmlLoader.load());
+        scene.getStylesheets().add(uiService.class.getResource(cssPath).toExternalForm());
+        stage.setScene(scene);
+        stage.show();
+
+        //Fade in effect
+        new FadeIn(scene.getRoot()).play();
+    }
+
+
+    //Crete a method to get FXML controller
+    public static <T> T getFxmlController(String fxmlPath){
+        //Holding the fxml controller
+        FXMLLoader loader = new FXMLLoader(uiService.class.getResource(fxmlPath));
+        try {
+            Parent root = loader.load();
+            return loader.getController();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
     }

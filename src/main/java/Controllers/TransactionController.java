@@ -7,9 +7,12 @@ import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,10 +22,17 @@ import javafx.scene.layout.VBox;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class TransactionController {
+public class TransactionController implements Initializable {
 
-    private int totalAmountToPay = 0;
+    public double totalAmountToPay = 0.00;
+    public int discountedAmount = 0;
+    public double netTotalToPay = 0.00;
+
+
+    public static TransactionController GlobetransactionController;
 
     @FXML
     private Button btnDone;
@@ -82,7 +92,8 @@ public class TransactionController {
             Item item = ItemTableDB.getItem(itemCode.getText());
             if (item == null){
                 uiService.giveErrorAlert("Incorrect ID",null,"Please check the Item Code or Barcode");
-            }else {
+            }
+            else {
                 //Creating each rows
                 addItem(item);
 
@@ -156,6 +167,7 @@ public class TransactionController {
 
         //Updating the grand total
         updateGrandTotal();
+        updateNetTotal();
 
         //Adding Price into total values
 
@@ -164,7 +176,7 @@ public class TransactionController {
     //This updates the grand total
     public void updateGrandTotal(){
         
-        double total = 000.00;
+        totalAmountToPay = 000.00;
         for (Node node : container.getChildren()) {
             if (node instanceof HBox hbox) {
                 for (Node child : hbox.getChildren()) {
@@ -173,7 +185,7 @@ public class TransactionController {
                         if (text.startsWith("Rs.") && text.endsWith("/=")) {
                             String amountStr = text.replace("Rs.", "").replace("/=", "").trim();
                             try {
-                                total += Double.parseDouble(amountStr);
+                                totalAmountToPay += Double.parseDouble(amountStr);
                             } catch (NumberFormatException ignored) {}
                         }
                     }
@@ -181,12 +193,35 @@ public class TransactionController {
             }
         }
 
-        String formattedTotal = String.format("%.2f", total);
+        String formattedTotal = String.format("%.2f", totalAmountToPay);
         totalAmount.setText("Rs."+formattedTotal+"/=");
 
     }
 
+    public void updateNetTotal(){
+        netTotalToPay = totalAmountToPay - discountedAmount;
+        netAmount.setText("Rs."+netTotalToPay+"0/=");
+    }
 
+    //Adding a setter to discount
+    public void setDiscountAmount(int discountAmount) {
+        discountedAmount = discountAmount;
+        discount.setText("- Rs."+String.valueOf(discountAmount)+"/=");
+        updateGrandTotal();
+        updateNetTotal();
+    }
 
+    @FXML
+    void onClickAddDiscountBtn(MouseEvent event) throws IOException {
+        uiService.openPopupWindow(event, "/com/codesolution/cs_pos_v1/fxmls/Popups/AddDiscountPopup.fxml","/Styles/mainStyle.css");
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        GlobetransactionController = this;
+
+    }
 }
 
