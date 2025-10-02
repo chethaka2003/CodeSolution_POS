@@ -1,5 +1,6 @@
 package Services;
 
+import com.codesolution.cs_pos_v1.CartRow;
 import com.itextpdf.io.source.ByteArrayOutputStream;
 
 import javax.print.*;
@@ -9,7 +10,16 @@ import java.util.List;
 
 public class BillPrintService {
 
-    public static void printReceipt(List<String> items, String companyName, String addressLine1,String addressLine2,String phoneNumber1,String phoneNumber2,double total) throws Exception {
+    public static void printReceipt(List<CartRow> cartRows , String companyName, String addressLine1, String addressLine2, String phoneNumber1, String phoneNumber2, double total,int discount,double netAmount) throws Exception {
+
+        String stringDiscount = "Rs."+discount+".00/=";
+
+        String formattedTotal = String.format("%.2f", total);
+        String stringTotal = "Rs."+formattedTotal+"/=";
+
+        String formattedNetAmount = String.format("%.2f", netAmount);
+        String stringNetAmount = "Rs."+formattedNetAmount+"/=";
+
         // ESC/POS commands
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
@@ -33,7 +43,7 @@ public class BillPrintService {
 
         baos.write((phoneNumber1+"/"+phoneNumber2 + "\n").getBytes(StandardCharsets.US_ASCII));
 
-        baos.write("-------------------------------------------------\n".getBytes());   // Divider
+        baos.write("------------------------------------------------\n".getBytes());   // Divider
 
 
         //Create table columns
@@ -44,27 +54,52 @@ public class BillPrintService {
         String header = String.format("%-20s %5s %10s", "Item", "Qty", "Price");
         baos.write((header + "\n").getBytes(StandardCharsets.US_ASCII));
 
+        baos.write(("\n").getBytes(StandardCharsets.US_ASCII));     //Line Break
+
         baos.write(new byte[]{0x1B, 0x40}); //RE sets back everything to normal size
 
         // Items
         baos.write(new byte[]{0x1B, 0x61, 0x00}); // Align left
-        for (String item : items) {
-            baos.write((item + "\n").getBytes(StandardCharsets.US_ASCII));
+        for (CartRow cartRow : cartRows) {
+            String itemName = cartRow.getItemName();
+            String qty = cartRow.getQuantity();
+            String price = cartRow.getPrice();
+
+            int maxItemLength = 20; // max width for item name
+
+            // Wrap long item names
+            while (itemName.length() > maxItemLength) {
+                String part = itemName.substring(0, maxItemLength);
+                itemName = itemName.substring(maxItemLength);
+
+                // Print wrapped part without qty/price
+                baos.write((String.format("%-20s", part) + "\n")
+                        .getBytes(StandardCharsets.US_ASCII));
+            }
+
+            // Ensure item name in last line is padded to 20 chars
+            String paddedName = String.format("%-20s", itemName);
+
+            // Right-align price in a fixed width (10 chars)
+            String line = String.format("%s %4s %15s", paddedName, qty, price);
+            baos.write((line + "\n").getBytes(StandardCharsets.US_ASCII));
         }
 
-        baos.write("-------------------------------------------------\n".getBytes());   // Divider
+        baos.write("------------------------------------------------\n".getBytes());   // Divider
 
         baos.write(new byte[]{0x1B, 0x61, 0x00});   //Left align
-        baos.write(("TOTAL:                          " + total + "\n").getBytes(StandardCharsets.US_ASCII));
-        baos.write(("Discount:                      -" + total + "\n").getBytes(StandardCharsets.US_ASCII));
+        baos.write(("TOTAL:                          " + stringTotal + "\n").getBytes(StandardCharsets.US_ASCII));
+        baos.write(("Discount:                      -" + stringDiscount + "\n").getBytes(StandardCharsets.US_ASCII));
 
-        baos.write("-------------------------------------------------\n".getBytes());   // Divider
+        baos.write(("\n").getBytes(StandardCharsets.US_ASCII));     //Line Break
 
-        baos.write(("Net Amount:                     " + total + "\n").getBytes(StandardCharsets.US_ASCII));
+        baos.write(("Net Amount:                     " + stringNetAmount + "\n").getBytes(StandardCharsets.US_ASCII));
 
-        baos.write("-------------------------------------------------\n".getBytes());   // Divider
+        baos.write("------------------------------------------------\n".getBytes());   // Divider
 
         baos.write(new byte[]{0x1B, 0x40}); //RE sets back everything to normal size
+
+        baos.write(("\n").getBytes(StandardCharsets.US_ASCII));     //Line Break
 
         //Come again
         baos.write(new byte[]{0x1B, 0x61, 0x01}); // Align center
@@ -101,10 +136,5 @@ public class BillPrintService {
     }
 
 
-    public static void main(String[] args) throws Exception {
-        List<String> names = new ArrayList<String>();
-        names.add("ppp");
-        names.add("ppp");
-        printReceipt(names,"Shalika Super","No 555/C ,Egoda Uyana Road","Walana ,Panadura","070 50 67 377","038 22 44 172",500);
-    }
+
 }
